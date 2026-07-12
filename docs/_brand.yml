@@ -1,0 +1,54 @@
+# Identidade visual — Metropolis Analytics
+# Cores extraídas de styles.css (relatório Quarto da Metropolis) + paleta dos exemplos
+meta:
+  name: "Metropolis Analytics"
+
+color:
+  palette:
+    metro-blue: "#0066cc"
+    metro-navy: "#2c3e50"
+    metro-navy-dark: "#1a252f"
+    # paleta de grupos/categorias usada nos relatórios
+    grupo-verde: "#27ae60"
+    grupo-laranja: "#e67e22"
+    grupo-azul: "#2980b9"
+    # acentos semânticos
+    accent-amber: "#f57c00"
+    accent-red: "#d32f2f"
+    # aliases Bootstrap
+    blue: metro-blue
+    green: grupo-verde
+    orange: grupo-laranja
+  foreground: "#333333"
+  background: "#ffffff"
+  primary: metro-blue
+  secondary: metro-navy
+  success: grupo-verde
+  info: metro-blue
+  warning: accent-amber
+  danger: accent-red
+  dark: metro-navy
+
+typography:
+  fonts:
+    # Segoe UI é a fonte do CSS original (sistema, Windows). Open Sans é o
+    # fallback Google — visualmente próximo e garantido em qualquer plataforma.
+    - family: "Open Sans"
+      source: google
+      weight: [400, 600, 700]
+  base:
+    family: "Open Sans"
+    size: 14px
+    line-height: 1.6
+  headings:
+    family: "Open Sans"
+    color: metro-navy
+    weight: 600
+  link:
+    color: metro-blue
+
+logo:
+  images:
+    metro-logo: logo_metropolis.png   # <-- coloque o arquivo do logo nesta pasta
+  small: metro-logo
+  medium: metro-logo
