@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "scanTargets": [
+    "source",
+    "renderedHtml",
+    "metadata",
+    "socialCardText"
+  ],
+  "blockedPatterns": [
+    {
+      "id": "publishing-platform-domain",
+      "pattern": "rpubs\\.com",
+      "flags": "iu"
+    },
+    {
+      "id": "portfolio-language",
+      "pattern": "\\b(?:trabalhos?|portf[oó]lio)\\b",
+      "flags": "iu"
+    },
+    {
+      "id": "case-study-language",
+      "pattern": "\\bestudos?\\s+de\\s+caso\\b",
+      "flags": "iu"
+    }
+  ],
+  "reviewRequiredPatterns": [
+    {
+      "id": "report-reference",
+      "pattern": "\\brelat[oó]rios?\\b",
+      "flags": "iu",
+      "allowedUse": "Generic reproducible deliverable without project, client, or URL identification"
+    },
+    {
+      "id": "client-reference",
+      "pattern": "\\bclientes?\\b",
+      "flags": "iu",
+      "allowedUse": "Generic confidentiality statement without identification"
+    }
+  ],
+  "productConstraints": {
+    "pricing": false,
+    "firstPartyForm": false,
+    "testimonials": false,
+    "inventedMetrics": false,
+    "outcomeGuarantees": false,
+    "privateReportsOrProjectNames": false
+  }
+}
