@@ -132,7 +132,9 @@ a { color: inherit; text-decoration-thickness: .08em; text-underline-offset: .2e
 
 .credentials-heading { margin-bottom: var(--space-7); }
 .bio-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 6vw, 6rem); }
-.bio-list article { padding-top: var(--space-6); border-top: 2px solid var(--color-brand); }
+.bio-list article { display: grid; grid-template-columns: clamp(6.5rem, 12vw, 9rem) minmax(0, 1fr); gap: clamp(1.25rem, 3vw, 2rem); align-items: start; padding-top: var(--space-6); border-top: 2px solid var(--color-brand); }
+.bio-avatar { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center 35%; }
+.bio-copy { min-width: 0; }
 .bio-list .role { color: var(--color-brand); }
 .profile-links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin-top: var(--space-5); font-size: var(--font-size-sm); }
 .profile-links a { min-height: 2.75rem; display: inline-flex; align-items: center; color: var(--color-brand); font-weight: 700; }
@@ -201,6 +203,7 @@ a { color: inherit; text-decoration-thickness: .08em; text-underline-offset: .2e
   .service-list article > span { margin-bottom: var(--space-4); }
   .process-list li > div, .faq-list article { grid-template-columns: 1fr; gap: var(--space-2); }
   .bio-list { grid-template-columns: 1fr; }
+  .bio-list article { grid-template-columns: 6.5rem minmax(0, 1fr); }
   .privacy-layout { grid-template-columns: 1fr; gap: var(--space-6); }
   .reading-nav { position: static; flex-flow: row wrap; gap: var(--space-2); border-top: 0; }
   .reading-nav::before { width: 100%; margin-bottom: 0; }

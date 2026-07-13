@@ -114,22 +114,28 @@ export default function Home() {
           </div>
           <div className="bio-list">
             <article>
-              <p className="role">Pesquisa, epidemiologia e modelagem</p>
-              <h3>Caio Sain Vallio</h3>
-              <p>Doutor em Fisioterapia, pesquisador e autor ou coautor de publicações em epidemiologia, modelagem e ciência de dados em saúde.</p>
-              <nav className="profile-links" aria-label="Perfis profissionais de Caio Sain Vallio">
-                <a href={professionalProfiles.caioLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <span className="sr-only">de Caio Sain Vallio (abre em nova aba)</span></a>
-                <a href={professionalProfiles.caioScholar} target="_blank" rel="noopener noreferrer">Google Acadêmico <span className="sr-only">de Caio Sain Vallio (busca pública, abre em nova aba)</span></a>
-              </nav>
+              <Image className="bio-avatar" src="/avatar-caio.jpeg" alt="Retrato de Caio Sain Vallio" width={800} height={800} sizes="(max-width: 48rem) 104px, 144px" unoptimized />
+              <div className="bio-copy">
+                <p className="role">Pesquisa, epidemiologia e modelagem</p>
+                <h3>Caio Sain Vallio</h3>
+                <p>Doutor em Fisioterapia, pesquisador e autor ou coautor de publicações em epidemiologia, modelagem e ciência de dados em saúde.</p>
+                <nav className="profile-links" aria-label="Perfis profissionais de Caio Sain Vallio">
+                  <a href={professionalProfiles.caioLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <span className="sr-only">de Caio Sain Vallio (abre em nova aba)</span></a>
+                  <a href={professionalProfiles.caioScholar} target="_blank" rel="noopener noreferrer">Google Acadêmico <span className="sr-only">de Caio Sain Vallio (busca pública, abre em nova aba)</span></a>
+                </nav>
+              </div>
             </article>
             <article>
-              <p className="role">Ciência de dados e análise estatística</p>
-              <h3>Vitor Sain Vallio</h3>
-              <p>Mestre em Ciências da Saúde e cientista de dados com experiência em análise epidemiológica e modelagem estatística.</p>
-              <nav className="profile-links" aria-label="Perfis profissionais de Vitor Sain Vallio">
-                <a href={professionalProfiles.vitorLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <span className="sr-only">de Vitor Sain Vallio (abre em nova aba)</span></a>
-                <a href={professionalProfiles.vitorLattesSearch} target="_blank" rel="noopener noreferrer">Currículo Lattes <span className="sr-only">de Vitor Sain Vallio (busca pública restrita ao Lattes, abre em nova aba)</span></a>
-              </nav>
+              <Image className="bio-avatar" src="/avatar-vitor.jpeg" alt="Retrato de Vitor Sain Vallio" width={800} height={800} sizes="(max-width: 48rem) 104px, 144px" unoptimized />
+              <div className="bio-copy">
+                <p className="role">Ciência de dados e análise estatística</p>
+                <h3>Vitor Sain Vallio</h3>
+                <p>Mestre em Ciências da Saúde e cientista de dados com experiência em análise epidemiológica e modelagem estatística.</p>
+                <nav className="profile-links" aria-label="Perfis profissionais de Vitor Sain Vallio">
+                  <a href={professionalProfiles.vitorLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <span className="sr-only">de Vitor Sain Vallio (abre em nova aba)</span></a>
+                  <a href={professionalProfiles.vitorLattesSearch} target="_blank" rel="noopener noreferrer">Currículo Lattes <span className="sr-only">de Vitor Sain Vallio (busca pública restrita ao Lattes, abre em nova aba)</span></a>
+                </nav>
+              </div>
             </article>
           </div>
         </section>
