@@ -94,6 +94,10 @@ test("mantém landmarks, h1 único, skip link e nomes acessíveis na homepage", 
   assert.match(html, /<summary>Menu\s*<span[^>]+aria-hidden="true"/i);
   assert.match(html, /aria-label="Metropolis Analytics — início"/i);
   assert.doesNotMatch(html, /<img(?![^>]*\balt=)[^>]*>/i);
+  assert.equal(count(html, /role="tab"/gi), 3);
+  assert.match(html, /role="tablist"[^>]+aria-label="Linha de raciocínio da pesquisa"/i);
+  assert.equal(count(html, /aria-controls="faq-answer-/gi), 4);
+  assert.match(html, /aria-expanded="true"/i);
 });
 
 test("expõe apenas Caio como contato principal com mensagem de triagem", async () => {
@@ -138,6 +142,8 @@ test("renderiza /privacidade e mantém navegação interna para a política", as
   assert.match(privacy, /confidencialidade dos projetos/i);
   assert.match(privacy, /Solicitações sobre privacidade/i);
   assert.match(privacy, /class="skip-link"[^>]+href="#conteudo"/i);
+  assert.match(privacy, /aria-label="Nesta página"/i);
+  assertInOrder(privacy, ['id="visita"', 'id="terceiros"', 'id="dados-tecnicos"', 'id="projetos"', 'id="solicitacoes"']);
 });
 
 test("declara salvaguardas CSS para responsividade e acessibilidade", async () => {

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { createPageMetadata } from "./site-metadata";
+import { Faq, ResearchJourney, RevealController, SiteHeader } from "./components/site-ui";
 
 export function generateMetadata() {
   return createPageMetadata({
@@ -50,33 +51,15 @@ const professionalProfiles = {
   vitorLattesSearch: "https://www.google.com/search?q=site%3Alattes.cnpq.br+%22Vitor+Sain+Vallio%22",
 } as const;
 
-function NavigationLinks() {
-  return (
-    <>
-      {navItems.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
-      <a className="nav-cta" href={whatsappHref} target="_blank" rel="noopener noreferrer">Conversar sobre sua pesquisa</a>
-    </>
-  );
-}
-
 export default function Home() {
   return (
     <>
       <a className="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
-      <header className="site-header">
-        <a className="brand" href="#inicio" aria-label="Metropolis Analytics — início">
-          <Image src="/logo-metropolis.png" alt="" width={42} height={42} priority unoptimized />
-          <span>Metropolis <strong>Analytics</strong></span>
-        </a>
-        <nav className="desktop-nav" aria-label="Navegação principal"><NavigationLinks /></nav>
-        <details className="mobile-nav">
-          <summary>Menu <span aria-hidden="true">+</span></summary>
-          <nav aria-label="Navegação principal para dispositivos móveis"><NavigationLinks /></nav>
-        </details>
-      </header>
+      <SiteHeader items={navItems} home ctaHref={whatsappHref} />
+      <RevealController />
 
       <main id="conteudo">
-        <section className="hero section" id="inicio" aria-labelledby="titulo-inicio">
+        <section className="hero section" id="inicio" aria-labelledby="titulo-inicio" data-reveal>
           <div className="hero-copy">
             <p className="hero-context">Para pesquisadores e equipes de pesquisa em saúde</p>
             <h1 id="titulo-inicio">Sua pesquisa precisa de método, análise e direção.</h1>
@@ -90,18 +73,10 @@ export default function Home() {
             </div>
             <p className="microcopy">A mensagem abre no WhatsApp com três campos para você completar. Nenhum arquivo precisa ser enviado no primeiro contato.</p>
           </div>
-          <figure className="hero-figure" aria-label="Representação abstrata de uma pesquisa acompanhada ao longo de suas etapas">
-            <div className="research-flow" aria-hidden="true">
-              <span className="flow-line" />
-              <span className="flow-point flow-point--one"><i>1</i><b>Pergunta</b></span>
-              <span className="flow-point flow-point--two"><i>2</i><b>Decisões</b></span>
-              <span className="flow-point flow-point--three"><i>3</i><b>Resultados</b></span>
-            </div>
-            <figcaption>Uma parceria contínua evita que decisões isoladas comprometam as etapas seguintes.</figcaption>
-          </figure>
+          <div className="hero-journey"><ResearchJourney /><p>Uma parceria contínua evita que decisões isoladas comprometam as etapas seguintes.</p></div>
         </section>
 
-        <section className="section" id="como-ajudamos" aria-labelledby="titulo-ajuda">
+        <section className="section" id="como-ajudamos" aria-labelledby="titulo-ajuda" data-reveal>
           <div className="section-heading">
             <h2 id="titulo-ajuda">Apoio para a decisão que vem agora</h2>
             <p>Você não precisa chegar com o método definido. Começamos pela pergunta, pelo desenho do estudo e pelo que a equipe precisa decidir.</p>
@@ -109,7 +84,7 @@ export default function Home() {
           <div className="service-list">
             {services.map(([title, text], index) => (
               <article key={title}>
-                <span aria-hidden="true">0{index + 1}</span>
+                <span aria-hidden="true">{index + 1}</span>
                 <h3>{title}</h3>
                 <p>{text}</p>
               </article>
@@ -117,7 +92,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section process-section" id="como-funciona" aria-labelledby="titulo-processo">
+        <section className="section process-section" id="como-funciona" aria-labelledby="titulo-processo" data-reveal>
           <div className="section-heading">
             <h2 id="titulo-processo">Um processo claro, sem pacote genérico</h2>
             <p>O apoio é ajustado ao estágio da pesquisa. Você sabe o que será feito, por quê e o que receberá ao final.</p>
@@ -132,7 +107,7 @@ export default function Home() {
           </ol>
         </section>
 
-        <section className="section" id="quem-somos" aria-labelledby="titulo-equipe">
+        <section className="section" id="quem-somos" aria-labelledby="titulo-equipe" data-reveal>
           <div className="section-heading credentials-heading">
             <h2 id="titulo-equipe">Quem orienta e conduz o apoio</h2>
             <p>O contato é direto com os profissionais responsáveis pelo apoio — da conversa inicial às entregas.</p>
@@ -159,14 +134,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section faq-section" id="faq" aria-labelledby="titulo-faq">
+        <section className="section faq-section" id="faq" aria-labelledby="titulo-faq" data-reveal>
           <div className="section-heading"><h2 id="titulo-faq">Antes de conversar</h2><p>Respostas diretas para saber se o apoio faz sentido para a sua pesquisa.</p></div>
-          <div className="faq-list">
-            {faqs.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}
-          </div>
+          <Faq items={faqs} />
         </section>
 
-        <section className="section contact" id="contato" aria-labelledby="titulo-contato">
+        <section className="section contact" id="contato" aria-labelledby="titulo-contato" data-reveal>
           <div>
             <p className="contact-context">Próximo passo</p>
             <h2 id="titulo-contato">Conte em que ponto está sua pesquisa.</h2>
