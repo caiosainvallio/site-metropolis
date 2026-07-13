@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     default: "Metropolis Analytics",
     template: "%s | Metropolis Analytics",
   },
-  description: "Apoio metodológico e estatístico para pesquisas em saúde, da pergunta científica à comunicação dos achados.",
+  description: "Parceria metodológica e estatística para pesquisas em saúde, do planejamento à comunicação dos resultados.",
   icons: { icon: "/logo-metropolis.png", shortcut: "/logo-metropolis.png" },
 };
 

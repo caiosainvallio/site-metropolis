@@ -4,90 +4,45 @@ import { createPageMetadata } from "./site-metadata";
 
 export function generateMetadata() {
   return createPageMetadata({
-    title: "Apoio metodológico e estatístico para pesquisas em saúde",
-    description: "Apoio a pesquisadores e equipes de saúde no desenho, planejamento, análise, interpretação e comunicação de estudos.",
+    title: "Parceria metodológica e estatística para pesquisas em saúde",
+    description: "Acompanhamento do planejamento à comunicação dos resultados, com decisões metodológicas claras e análises reprodutíveis.",
     path: "/",
   });
 }
 
 const navItems = [
-  ["Quando ajudamos", "#quando-ajudamos"],
-  ["Jornada", "#jornada"],
-  ["Métodos", "#mapa-metodologico"],
-  ["Processo", "#processo"],
-  ["Quem somos", "#responsaveis"],
-  ["Perguntas", "#faq"],
+  ["Como ajudamos", "#como-ajudamos"],
+  ["Como funciona", "#como-funciona"],
+  ["Quem somos", "#quem-somos"],
 ] as const;
 
-const journey = [
-  ["Desenho", "Traduzimos a pergunta em objetivos, desfechos e um desenho de estudo coerente."],
-  ["Planejamento", "Definimos variáveis, instrumentos, amostragem e um plano de análise antes de olhar para os resultados."],
-  ["Banco de dados", "Orientamos a estrutura, a documentação, a verificação e o preparo dos dados para análise."],
-  ["Análise", "Selecionamos e aplicamos métodos de acordo com a pergunta, o desenho, as características dos dados e as premissas envolvidas."],
-  ["Interpretação", "Contextualizamos estimativas, incertezas, limitações e a diferença entre associação, predição e causalidade."],
-  ["Comunicação", "Organizamos tabelas, figuras e texto técnico para que métodos e achados possam ser compreendidos e verificados."],
+const services = [
+  ["Planejar o estudo", "Transformamos a pergunta de pesquisa em objetivos, desfechos, variáveis e um plano de análise coerente."],
+  ["Analisar os dados", "Organizamos o banco, selecionamos os métodos e documentamos as decisões para que a análise possa ser conferida."],
+  ["Comunicar os resultados", "Apoiamos a interpretação e preparamos tabelas, figuras e texto técnico para manuscritos e apresentações."],
 ] as const;
 
-const questionGroups = [
-  ["Frequência e prevalência", "Estimativas de ocorrência em uma população, com atenção à amostragem, ao período de referência e à incerteza."],
-  ["Comparação entre grupos", "Diferenças entre grupos ou condições, considerando o desenho, a distribuição dos dados e fatores que podem influenciar a comparação."],
-  ["Associação e efeito", "Relações entre exposições e desfechos, com medidas adequadas à pergunta e interpretação compatível com o desenho do estudo."],
-  ["Dados longitudinais e repetidos", "Mudanças ao longo do tempo e observações correlacionadas dentro da mesma pessoa, serviço ou grupo."],
-  ["Tempo até evento", "Tempo até a ocorrência de um desfecho, incluindo seguimento incompleto e diferenças de risco ao longo do período observado."],
-  ["Diagnóstico e propriedades de medida", "Desempenho de testes, concordância, confiabilidade, validade e capacidade de detectar mudanças de instrumentos."],
-  ["Predição e machine learning", "Desenvolvimento e avaliação de modelos preditivos, com separação clara entre desempenho aparente, validação e uso pretendido."],
-  ["Síntese de evidências e meta-análise", "Combinação criteriosa de evidências, considerando comparabilidade, heterogeneidade e incerteza entre estudos."],
-  ["Avaliação econômica em saúde", "Comparação de custos e consequências entre alternativas, conforme a perspectiva, o horizonte de tempo e as fontes de evidência."],
-] as const;
-
-const researchPaths = [
-  {
-    title: "Estudo diagnóstico",
-    question: "O teste distingue ou mede o que a pesquisa precisa?",
-    context: "O desenho, a população, o padrão de referência e a forma de coleta delimitam o que pode ser avaliado.",
-    strategy: "A estratégia é definida depois desse enquadramento e pode abordar desempenho, concordância, confiabilidade ou validade, conforme o objetivo.",
-  },
-  {
-    title: "Coorte longitudinal",
-    question: "Como um desfecho muda ou ocorre durante o seguimento?",
-    context: "Número e momento das medições, perdas de seguimento e relações entre exposições e desfechos orientam a leitura do desenho.",
-    strategy: "Só então são discutidas formas de representar mudança, dependência entre observações, tempo até evento e incerteza.",
-  },
-  {
-    title: "Revisão sistemática",
-    question: "O que o conjunto de estudos permite concluir sobre uma pergunta delimitada?",
-    context: "Critérios de elegibilidade, comparabilidade dos estudos, risco de viés e disponibilidade de resultados vêm antes da combinação numérica.",
-    strategy: "A meta-análise é considerada quando a síntese quantitativa for justificável; em outros contextos, o percurso é registrado sem forçar uma combinação.",
-  },
-] as const;
-
-const studyDesigns = [
-  "Estudos transversais",
-  "Coortes",
-  "Estudos caso-controle",
-  "Ensaios clínicos",
-  "Estudos diagnósticos",
-  "Validação de instrumentos",
-  "Revisões sistemáticas e meta-análises",
-  "Avaliações econômicas em saúde",
-] as const;
-
-const deliverables = [
-  ["Acompanhamento consultivo", "Conversas de alinhamento e revisão para apoiar decisões metodológicas, estatísticas e de interpretação ao longo do projeto."],
-  ["Relatório reprodutível", "Registro organizado do fluxo analítico, com métodos, decisões, resultados e elementos necessários para conferência e atualização."],
-  ["Tabelas e figuras prontas para publicação", "Materiais claros e consistentes, preparados para integrar manuscritos ou apresentações e acompanhados da orientação necessária para sua leitura."],
+const process = [
+  ["Entendemos a pesquisa", "Você apresenta a etapa atual, a principal dúvida e o que já foi definido ou coletado."],
+  ["Definimos o escopo", "Alinhamos prioridades, responsabilidades, entregas e pontos de revisão antes de começar."],
+  ["Trabalhamos em parceria", "As decisões são discutidas e registradas, com acompanhamento até a entrega combinada."],
 ] as const;
 
 const faqs = [
-  ["Que tipo de apoio vocês oferecem?", "Apoio metodológico e estatístico para pesquisas em saúde, do desenho à comunicação. O escopo pode incluir planejamento, organização do banco, análise, interpretação, relatório reprodutível e tabelas e figuras prontas para publicação. Não oferecemos análise qualitativa."],
-  ["Em que momento devo entrar em contato?", "Você pode entrar em contato desde a formulação da pergunta até a preparação dos resultados. Quando possível, envolver o apoio antes da coleta ajuda a alinhar desenho, variáveis e plano de análise; pesquisas em andamento também podem ser avaliadas a partir do que já foi definido e coletado."],
-  ["O que recebo ao final do apoio?", "As entregas combinam acompanhamento consultivo, relatório reprodutível e tabelas e figuras prontas para publicação. O conteúdo e o formato são definidos conforme a pergunta, o estágio da pesquisa e o escopo acordado."],
-  ["Como as informações da pesquisa são tratadas?", "Dados, documentos e informações compartilhados são tratados de forma confidencial. Antes de qualquer troca de material, alinhamos o que é necessário, quem terá acesso e qual canal será usado."],
-  ["Como funciona o apoio à distância?", "O acompanhamento pode ocorrer por reuniões remotas e canais acordados para comunicação e compartilhamento seguro de materiais. Etapas, responsabilidades e pontos de revisão são definidos no início e ajustados quando o projeto exigir."],
-  ["Vocês garantem um achado significativo ou a publicação do estudo?", "Não. A atuação busca adequação metodológica, transparência e interpretação responsável. Resultados dependem da pergunta, do desenho, dos dados e de outros fatores da pesquisa; decisões editoriais pertencem aos periódicos."],
+  ["Em que momento devo entrar em contato?", "Desde a formulação da pergunta até a preparação dos resultados. Quando possível, conversar antes da coleta amplia as opções; pesquisas em andamento também podem ser avaliadas."],
+  ["Que tipo de pesquisa vocês atendem?", "Trabalhamos com pesquisas quantitativas em saúde, incluindo estudos observacionais, ensaios, estudos diagnósticos, validação de instrumentos, revisões sistemáticas e avaliações econômicas. Não oferecemos análise qualitativa."],
+  ["O que pode fazer parte da entrega?", "O escopo pode combinar acompanhamento consultivo, relatório reprodutível e tabelas e figuras prontas para publicação. O formato depende da pergunta e do estágio do estudo."],
+  ["Como os dados da pesquisa são tratados?", "Documentos, dados e informações do projeto são tratados de forma confidencial. Antes do compartilhamento, alinhamos o que é necessário, quem terá acesso e qual canal será usado."],
 ] as const;
 
-const whatsappMessage = encodeURIComponent("Olá, gostaria de conversar sobre apoio metodológico e estatístico para uma pesquisa em saúde.");
+const whatsappMessage = encodeURIComponent(`Olá, gostaria de conversar sobre apoio metodológico e estatístico para uma pesquisa em saúde.
+
+Etapa atual da pesquisa:
+Principal dúvida ou necessidade:
+Prazo relevante, se houver:`);
+
+const whatsappHref = `https://wa.me/5511980158332?text=${whatsappMessage}`;
+
 const professionalProfiles = {
   caioLinkedIn: "https://www.linkedin.com/in/caiosainvallio/",
   caioScholar: "https://scholar.google.com/scholar?q=%22Caio+Sain+Vallio%22",
@@ -99,7 +54,7 @@ function NavigationLinks() {
   return (
     <>
       {navItems.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
-      <a className="nav-cta" href="#contato">Solicitar conversa</a>
+      <a className="nav-cta" href={whatsappHref} target="_blank" rel="noopener noreferrer">Conversar sobre sua pesquisa</a>
     </>
   );
 }
@@ -110,7 +65,7 @@ export default function Home() {
       <a className="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
       <header className="site-header">
         <a className="brand" href="#inicio" aria-label="Metropolis Analytics — início">
-          <Image src="/logo-metropolis.png" alt="" width={42} height={42} priority />
+          <Image src="/logo-metropolis.png" alt="" width={42} height={42} priority unoptimized />
           <span>Metropolis <strong>Analytics</strong></span>
         </a>
         <nav className="desktop-nav" aria-label="Navegação principal"><NavigationLinks /></nav>
@@ -121,139 +76,117 @@ export default function Home() {
       </header>
 
       <main id="conteudo">
-        <section className="hero section section--wide" id="inicio" aria-labelledby="titulo-inicio">
+        <section className="hero section" id="inicio" aria-labelledby="titulo-inicio">
           <div className="hero-copy">
-            <h1 id="titulo-inicio">Apoio metodológico e estatístico para pesquisas em saúde</h1>
-            <p className="lead">Da pergunta científica à comunicação dos achados, ajudamos pesquisadores e equipes a tomar decisões coerentes, documentadas e compreensíveis em cada etapa do estudo.</p>
-            <a className="button button-primary" href="#contato">Solicitar conversa</a>
-            <p className="microcopy">Conte brevemente em que etapa está sua pesquisa. A conversa começa no WhatsApp, sem formulário neste site.</p>
-          </div>
-          <figure className="hero-figure" aria-labelledby="hero-figure-caption">
-            <div className="uncertainty-figure" aria-hidden="true">
-              <span className="uncertainty-reference" />
-              <span className="uncertainty-row uncertainty-row--a"><i /></span>
-              <span className="uncertainty-row uncertainty-row--b"><i /></span>
-              <span className="uncertainty-row uncertainty-row--c"><i /></span>
-              <span className="uncertainty-row uncertainty-row--d"><i /></span>
-              <span className="uncertainty-row uncertainty-row--e"><i /></span>
+            <p className="hero-context">Para pesquisadores e equipes de pesquisa em saúde</p>
+            <h1 id="titulo-inicio">Sua pesquisa precisa de método, análise e direção.</h1>
+            <p className="lead">Acompanhamos seu estudo do planejamento à comunicação dos resultados, com decisões claras, análises reprodutíveis e contato direto com quem conduz o apoio.</p>
+            <div className="hero-actions">
+              <a className="button button-primary" href={whatsappHref} target="_blank" rel="noopener noreferrer">
+                Conversar sobre sua pesquisa
+                <span className="sr-only"> com Caio Sain Vallio no WhatsApp (abre em nova aba)</span>
+              </a>
+              <a className="text-link" href="#como-ajudamos">Ver como podemos ajudar</a>
             </div>
-            <figcaption id="hero-figure-caption">
-              <strong>Estimativas existem com incerteza.</strong>
-              <span>Composição conceitual, sem dados reais: pontos e intervalos abstratos representam a importância de explicitar limites.</span>
-            </figcaption>
+            <p className="microcopy">A mensagem abre no WhatsApp com três campos para você completar. Nenhum arquivo precisa ser enviado no primeiro contato.</p>
+          </div>
+          <figure className="hero-figure" aria-label="Representação abstrata de uma pesquisa acompanhada ao longo de suas etapas">
+            <div className="research-flow" aria-hidden="true">
+              <span className="flow-line" />
+              <span className="flow-point flow-point--one"><i>1</i><b>Pergunta</b></span>
+              <span className="flow-point flow-point--two"><i>2</i><b>Decisões</b></span>
+              <span className="flow-point flow-point--three"><i>3</i><b>Resultados</b></span>
+            </div>
+            <figcaption>Uma parceria contínua evita que decisões isoladas comprometam as etapas seguintes.</figcaption>
           </figure>
         </section>
 
-        <section className="section" id="quando-ajudamos" aria-labelledby="titulo-quando">
-          <div className="section-heading"><h2 id="titulo-quando">Quando vale procurar apoio</h2><p>O melhor momento depende da decisão que está diante de você. Podemos contribuir antes da coleta, durante a organização do estudo ou quando os dados e resultados já precisam ser analisados e comunicados.</p></div>
-          <div className="three-column-list">
-            <article><h3>Ao transformar uma ideia em estudo</h3><p>Para delimitar a pergunta, alinhar objetivos, desfechos e desenho e antecipar o que será necessário para responder à pesquisa.</p></article>
-            <article><h3>Antes ou durante a coleta</h3><p>Para planejar variáveis, instrumentos, tamanho da amostra, estrutura do banco e rotinas de controle de qualidade.</p></article>
-            <article><h3>Na análise e na comunicação</h3><p>Para definir uma estratégia compatível com os dados, interpretar estimativas e incertezas e preparar resultados claros para manuscritos, apresentações ou decisões da equipe.</p></article>
+        <section className="section" id="como-ajudamos" aria-labelledby="titulo-ajuda">
+          <div className="section-heading">
+            <h2 id="titulo-ajuda">Apoio para a decisão que vem agora</h2>
+            <p>Você não precisa chegar com o método definido. Começamos pela pergunta, pelo desenho do estudo e pelo que a equipe precisa decidir.</p>
           </div>
-          <p className="microcopy">Se uma decisão metodológica pode afetar as próximas etapas, conversar cedo costuma ampliar as opções disponíveis.</p>
-        </section>
-
-        <section className="section surface-section" id="jornada" aria-labelledby="titulo-jornada">
-          <div className="section-heading"><h2 id="titulo-jornada">Apoio ao longo de toda a jornada da pesquisa</h2><p>As etapas se conectam: uma escolha feita no início influencia o banco, a análise e o que poderá ser concluído ao final. O acompanhamento mantém essas decisões alinhadas ao longo do estudo.</p></div>
-          <ol className="journey-list">{journey.map(([title, text], index) => <li key={title}><span aria-hidden="true">{index + 1}</span><article><h3>{title}</h3><p>{text}</p></article></li>)}</ol>
-        </section>
-
-        <section className="section" id="mapa-metodologico" aria-labelledby="titulo-mapa">
-          <div className="section-heading"><h2 id="titulo-mapa">O método começa pela pergunta</h2><p>Não existe uma técnica certa isolada do contexto. Primeiro esclarecemos o que a pesquisa quer responder; depois consideramos o desenho, os dados disponíveis e as premissas para definir a estratégia de análise.</p></div>
-          <div className="method-intro" aria-label="Relação entre pergunta, desenho e método">
-            <p><strong>Pergunta</strong><span>define o que precisa ser compreendido</span></p>
-            <p><strong>Desenho e dados</strong><span>delimitam o que pode ser concluído</span></p>
-            <p><strong>Estratégia</strong><span>é escolhida com premissas e limites explícitos</span></p>
-          </div>
-          <div className="method-list">{questionGroups.map(([title, text]) => <article key={title}><h3>{title}</h3><p>{text}</p></article>)}</div>
-          <aside className="bayesian-note" aria-labelledby="titulo-bayes">
-            <h3 id="titulo-bayes">Métodos bayesianos atravessam o mapa</h3>
-            <p>São uma abordagem que pode ser considerada em diferentes perguntas quando suas premissas e sua forma de expressar incerteza forem adequadas ao estudo — não uma solução automática.</p>
-          </aside>
-          <div className="pathways" aria-labelledby="titulo-percursos">
-            <div className="pathways-heading"><h3 id="titulo-percursos">Três percursos, decisões diferentes</h3><p>Os exemplos mostram como o contexto muda a conversa. Eles não prescrevem uma técnica.</p></div>
-            {researchPaths.map((path) => (
-              <article key={path.title}>
-                <h3>{path.title}</h3>
-                <dl>
-                  <div><dt>Pergunta</dt><dd>{path.question}</dd></div>
-                  <div><dt>Desenho e contexto</dt><dd>{path.context}</dd></div>
-                  <div><dt>Como ajudamos</dt><dd>{path.strategy}</dd></div>
-                </dl>
+          <div className="service-list">
+            {services.map(([title, text], index) => (
+              <article key={title}>
+                <span aria-hidden="true">0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
               </article>
             ))}
           </div>
-          <p className="microcopy">Os exemplos orientam a conversa; a escolha final depende do contexto e não é automática.</p>
         </section>
 
-        <section className="section section--compact surface-section" id="desenhos" aria-labelledby="titulo-desenhos">
-          <div className="section-heading"><h2 id="titulo-desenhos">Desenhos de estudo com os quais trabalhamos</h2><div><p>O desenho organiza como a pergunta será respondida; ele não determina sozinho a análise. Trabalhamos com oito famílias de estudos, sempre considerando o estágio e as decisões já tomadas.</p><p>Em cada desenho, o escopo é definido a partir da pergunta e do estágio da pesquisa. <strong>Não oferecemos análise qualitativa.</strong></p></div></div>
-          <ul className="design-list">{studyDesigns.map((design) => <li key={design}>{design}</li>)}</ul>
-        </section>
-
-        <section className="section" id="processo" aria-labelledby="titulo-processo">
-          <div className="section-heading"><h2 id="titulo-processo">Um processo próximo, com decisões que podem ser revisitadas</h2><p>Começamos entendendo a pergunta, o desenho e o estágio atual da pesquisa. Em seguida, combinamos prioridades, responsabilidades e pontos de revisão. As escolhas são discutidas e registradas durante o processo, e as entregas são apresentadas com seus pressupostos e limites.</p></div>
-          <div className="deliverables" aria-label="Três entregas complementares">{deliverables.map(([title, text], index) => <article key={title}><span aria-hidden="true">0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div>
-          <p className="microcopy">As três entregas se complementam e são ajustadas ao escopo combinado para a pesquisa.</p>
-          <a className="button button-primary" href="#contato">Solicitar conversa</a>
-        </section>
-
-        <section className="section surface-section" id="principios" aria-labelledby="titulo-principios">
-          <div className="section-heading"><h2 id="titulo-principios">Rigor que aparece no modo de trabalhar</h2><p>A confiança é construída por práticas verificáveis, não por exposição de projetos. O conteúdo compartilhado na conversa inicial e durante a consultoria é tratado de forma confidencial e usado apenas para conduzir o escopo acordado.</p></div>
-          <div className="principles-list">
-            <article><h3>Decisões documentadas</h3><p>Registramos escolhas, mudanças e justificativas relevantes ao percurso analítico.</p></article>
-            <article><h3>Reprodutibilidade</h3><p>Estruturamos o fluxo para que procedimentos e resultados possam ser conferidos e, quando necessário, atualizados.</p></article>
-            <article><h3>Adequação metodológica</h3><p>Escolhemos métodos em função da pergunta, do desenho e dos dados, explicitando premissas e limitações.</p></article>
-            <article><h3>Comunicação compreensível</h3><p>Explicamos conceitos e resultados em linguagem compatível com a equipe, sem ocultar a complexidade que importa.</p></article>
-            <article><h3>Confidencialidade</h3><p>Preservamos dados, documentos e informações do projeto e alinhamos formas seguras de compartilhamento conforme a necessidade.</p></article>
+        <section className="section process-section" id="como-funciona" aria-labelledby="titulo-processo">
+          <div className="section-heading">
+            <h2 id="titulo-processo">Um processo claro, sem pacote genérico</h2>
+            <p>O apoio é ajustado ao estágio da pesquisa. Você sabe o que será feito, por quê e o que receberá ao final.</p>
           </div>
-          <p className="microcopy">Saiba como o site e os canais externos tratam informações na <Link href="/privacidade">Política de Privacidade</Link>.</p>
+          <ol className="process-list">
+            {process.map(([title, text], index) => (
+              <li key={title}>
+                <span aria-hidden="true">{index + 1}</span>
+                <div><h3>{title}</h3><p>{text}</p></div>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        <section className="section" id="responsaveis" aria-labelledby="titulo-responsaveis">
-          <div className="section-heading"><h2 id="titulo-responsaveis">Quem conduz o apoio</h2><p>O contato é direto com os profissionais responsáveis pelo apoio metodológico e estatístico.</p></div>
+        <section className="section" id="quem-somos" aria-labelledby="titulo-equipe">
+          <div className="section-heading credentials-heading">
+            <h2 id="titulo-equipe">Quem orienta e conduz o apoio</h2>
+            <p>O contato é direto com os profissionais responsáveis pelo apoio — da conversa inicial às entregas.</p>
+          </div>
           <div className="bio-list">
             <article>
+              <p className="role">Pesquisa, epidemiologia e modelagem</p>
               <h3>Caio Sain Vallio</h3>
-              <p>Doutor em Fisioterapia, pesquisador e autor ou coautor de publicações sobre epidemiologia, modelagem e ciência de dados em saúde.</p>
+              <p>Doutor em Fisioterapia, pesquisador e autor ou coautor de publicações em epidemiologia, modelagem e ciência de dados em saúde.</p>
               <nav className="profile-links" aria-label="Perfis profissionais de Caio Sain Vallio">
-                <a href={professionalProfiles.caioLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn de Caio Sain Vallio <span className="sr-only">(abre em nova aba)</span></a>
-                <a href={professionalProfiles.caioScholar} target="_blank" rel="noopener noreferrer">Publicações de Caio Sain Vallio no Google Acadêmico <span className="sr-only">(busca pública, abre em nova aba)</span></a>
+                <a href={professionalProfiles.caioLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <span className="sr-only">de Caio Sain Vallio (abre em nova aba)</span></a>
+                <a href={professionalProfiles.caioScholar} target="_blank" rel="noopener noreferrer">Google Acadêmico <span className="sr-only">de Caio Sain Vallio (busca pública, abre em nova aba)</span></a>
               </nav>
             </article>
             <article>
+              <p className="role">Ciência de dados e análise estatística</p>
               <h3>Vitor Sain Vallio</h3>
               <p>Mestre em Ciências da Saúde e cientista de dados com experiência em análise epidemiológica e modelagem estatística.</p>
               <nav className="profile-links" aria-label="Perfis profissionais de Vitor Sain Vallio">
-                <a href={professionalProfiles.vitorLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn de Vitor Sain Vallio <span className="sr-only">(abre em nova aba)</span></a>
-                <a href={professionalProfiles.vitorLattesSearch} target="_blank" rel="noopener noreferrer">Buscar Currículo Lattes de Vitor Sain Vallio <span className="sr-only">(busca pública restrita ao Lattes, abre em nova aba)</span></a>
+                <a href={professionalProfiles.vitorLinkedIn} target="_blank" rel="noopener noreferrer">LinkedIn <span className="sr-only">de Vitor Sain Vallio (abre em nova aba)</span></a>
+                <a href={professionalProfiles.vitorLattesSearch} target="_blank" rel="noopener noreferrer">Currículo Lattes <span className="sr-only">de Vitor Sain Vallio (busca pública restrita ao Lattes, abre em nova aba)</span></a>
               </nav>
             </article>
           </div>
         </section>
 
-        <section className="section surface-section" id="faq" aria-labelledby="titulo-faq">
-          <h2 id="titulo-faq">Perguntas frequentes</h2>
-          <div className="faq-list">{faqs.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}</div>
+        <section className="section faq-section" id="faq" aria-labelledby="titulo-faq">
+          <div className="section-heading"><h2 id="titulo-faq">Antes de conversar</h2><p>Respostas diretas para saber se o apoio faz sentido para a sua pesquisa.</p></div>
+          <div className="faq-list">
+            {faqs.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}
+          </div>
         </section>
 
         <section className="section contact" id="contato" aria-labelledby="titulo-contato">
-          <div className="section-heading"><h2 id="titulo-contato">Vamos conversar sobre sua pesquisa</h2><p>Escolha com quem deseja iniciar a conversa. A mensagem do WhatsApp já estará preenchida; acrescente, se quiser, a etapa atual do estudo e a principal dúvida da equipe.</p></div>
-          <div className="contact-list">
-            <article><h3>Conversar com Caio</h3><a className="button button-primary" href={`https://wa.me/5511980158332?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">Solicitar conversa <span className="sr-only">com Caio Sain Vallio no WhatsApp (abre em nova aba)</span></a></article>
-            <article><h3>Conversar com Vitor</h3><a className="button button-primary" href={`https://wa.me/5511957163477?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer">Solicitar conversa <span className="sr-only">com Vitor Sain Vallio no WhatsApp (abre em nova aba)</span></a></article>
+          <div>
+            <p className="contact-context">Próximo passo</p>
+            <h2 id="titulo-contato">Conte em que ponto está sua pesquisa.</h2>
           </div>
-          <p className="microcopy">O link abre o WhatsApp em um serviço externo. Nenhuma mensagem é enviada automaticamente.</p>
-          <p className="microcopy">Respondemos assim que possível para entender a pesquisa e avaliar se o apoio está dentro do nosso escopo.</p>
+          <div className="contact-action">
+            <p>Caio recebe o primeiro contato e avalia com você a demanda, o estágio do estudo e o escopo possível.</p>
+            <a className="button button-light" href={whatsappHref} target="_blank" rel="noopener noreferrer">
+              Abrir conversa no WhatsApp
+              <span className="sr-only"> com Caio Sain Vallio (abre em nova aba)</span>
+            </a>
+            <small>Nenhuma mensagem é enviada automaticamente.</small>
+          </div>
         </section>
       </main>
 
       <footer className="site-footer">
-        <Link className="brand" href="/" aria-label="Metropolis Analytics — início"><Image src="/logo-metropolis.png" alt="" width={38} height={38} /><span>Metropolis <strong>Analytics</strong></span></Link>
-        <p>Apoio metodológico e estatístico para pesquisas em saúde.</p>
+        <Link className="brand" href="/" aria-label="Metropolis Analytics — início"><Image src="/logo-metropolis.png" alt="" width={38} height={38} unoptimized /><span>Metropolis <strong>Analytics</strong></span></Link>
+        <p>Parceria metodológica e estatística para pesquisas em saúde.</p>
         <nav className="footer-links" aria-label="Navegação do rodapé">
-          <Link className="footer-link" href="/privacidade">Privacidade</Link>
+          <Link className="footer-link" href="/privacidade">Política de Privacidade</Link>
           <a className="footer-link" href="#inicio">Voltar ao topo ↑</a>
         </nav>
       </footer>

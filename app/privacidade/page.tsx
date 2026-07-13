@@ -16,7 +16,7 @@ export default function PrivacyPage() {
       <a className="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
       <header className="site-header">
         <Link className="brand" href="/" aria-label="Metropolis Analytics — início">
-          <Image src="/logo-metropolis.png" alt="" width={42} height={42} priority />
+          <Image src="/logo-metropolis.png" alt="" width={42} height={42} priority unoptimized />
           <span>Metropolis <strong>Analytics</strong></span>
         </Link>
         <Link className="footer-link" href="/">Voltar à página inicial</Link>
@@ -60,7 +60,7 @@ export default function PrivacyPage() {
       </main>
 
       <footer className="site-footer">
-        <Link className="brand" href="/" aria-label="Metropolis Analytics — início"><Image src="/logo-metropolis.png" alt="" width={38} height={38} /><span>Metropolis <strong>Analytics</strong></span></Link>
+        <Link className="brand" href="/" aria-label="Metropolis Analytics — início"><Image src="/logo-metropolis.png" alt="" width={38} height={38} unoptimized /><span>Metropolis <strong>Analytics</strong></span></Link>
         <p>Apoio metodológico e estatístico para pesquisas em saúde.</p>
         <Link className="footer-link" href="/">Página inicial</Link>
       </footer>

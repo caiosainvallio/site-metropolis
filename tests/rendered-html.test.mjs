@@ -41,28 +41,29 @@ function count(html, pattern) {
   return [...html.matchAll(pattern)].length;
 }
 
-test("renderiza a homepage institucional completa na ordem planejada", async () => {
+test("renderiza a homepage concisa na ordem planejada", async () => {
   const html = await renderedHtml();
 
-  assert.match(html, /<title>Apoio metodológico e estatístico para pesquisas em saúde \| Metropolis Analytics<\/title>/i);
-  assert.match(html, /Da pergunta científica à comunicação dos achados/i);
+  assert.match(html, /<title>Parceria metodológica e estatística para pesquisas em saúde \| Metropolis Analytics<\/title>/i);
+  assert.match(html, /Sua pesquisa precisa de método, análise e direção/i);
   assert.match(html, /Não oferecemos análise qualitativa/i);
   assert.match(html, /Acompanhamento consultivo/i);
   assert.match(html, /Relatório reprodutível/i);
   assert.match(html, /Tabelas e figuras prontas para publicação/i);
+  assert.doesNotMatch(html, /class="scope-note"/i);
+  assert.doesNotMatch(html, /class="deliverable-line"/i);
 
   assertInOrder(html, [
     'id="inicio"',
-    'id="quando-ajudamos"',
-    'id="jornada"',
-    'id="mapa-metodologico"',
-    'id="desenhos"',
-    'id="processo"',
-    'id="principios"',
-    'id="responsaveis"',
+    'id="como-ajudamos"',
+    'id="como-funciona"',
+    'id="quem-somos"',
     'id="faq"',
     'id="contato"',
   ]);
+
+  assert.doesNotMatch(html, /id="mapa-metodologico"/i);
+  assert.doesNotMatch(html, /id="desenhos"/i);
 });
 
 test("não publica padrões bloqueados pela política de conteúdo", async () => {
@@ -95,20 +96,16 @@ test("mantém landmarks, h1 único, skip link e nomes acessíveis na homepage", 
   assert.doesNotMatch(html, /<img(?![^>]*\balt=)[^>]*>/i);
 });
 
-test("expõe dois contatos de WhatsApp com número, mensagem e pessoa corretos", async () => {
+test("expõe apenas Caio como contato principal com mensagem de triagem", async () => {
   const html = await renderedHtml();
-  const message = encodeURIComponent(
-    "Olá, gostaria de conversar sobre apoio metodológico e estatístico para uma pesquisa em saúde.",
-  );
 
-  for (const [number, person] of [
-    ["5511980158332", "Caio Sain Vallio"],
-    ["5511957163477", "Vitor Sain Vallio"],
-  ]) {
-    assert.match(html, new RegExp(`href="https://wa\\.me/${number}\\?text=${message}"`, "i"));
-    assert.match(html, new RegExp(`com ${person} no WhatsApp \\(abre em nova aba\\)`, "i"));
-  }
-  assert.equal(count(html, /href="https:\/\/wa\.me\/\d+\?text=/gi), 2);
+  assert.match(html, /href="https:\/\/wa\.me\/5511980158332\?text=/i);
+  assert.match(html, /Etapa(?:%20|\+)atual(?:%20|\+)da(?:%20|\+)pesquisa/i);
+  assert.match(html, /Principal(?:%20|\+)d%C3%BAvida(?:%20|\+)ou(?:%20|\+)necessidade/i);
+  assert.match(html, /Prazo(?:%20|\+)relevante/i);
+  assert.match(html, /com Caio Sain Vallio no WhatsApp \(abre em nova aba\)/i);
+  assert.doesNotMatch(html, /wa\.me\/5511957163477/i);
+  assert.ok(count(html, /href="https:\/\/wa\.me\/5511980158332\?text=/gi) >= 3);
 });
 
 test("expõe os quatro destinos profissionais e rotula as buscas públicas", async () => {
@@ -125,7 +122,7 @@ test("expõe os quatro destinos profissionais e rotula as buscas públicas", asy
     assert.match(html, new RegExp(`href="${escaped}"[^>]*target="_blank"[^>]*rel="noopener noreferrer"`, "i"));
   }
   assert.match(html, /Google Acadêmico[\s\S]*busca pública, abre em nova aba/i);
-  assert.match(html, /Buscar Currículo Lattes[\s\S]*busca pública restrita ao Lattes, abre em nova aba/i);
+  assert.match(html, /Currículo Lattes[\s\S]*busca pública restrita ao Lattes, abre em nova aba/i);
   assert.equal(count(html, /class="profile-links"/gi), 2);
 });
 
@@ -133,7 +130,6 @@ test("renderiza /privacidade e mantém navegação interna para a política", as
   const [home, privacy] = await Promise.all([renderedHtml(), renderedHtml("/privacidade")]);
 
   assert.match(home, /href="\/privacidade"[^>]*>Política de Privacidade<\/a>/i);
-  assert.match(home, /href="\/privacidade"[^>]*>Privacidade<\/a>/i);
   assert.match(privacy, /<title>Política de Privacidade \| Metropolis Analytics<\/title>/i);
   assert.equal(count(privacy, /<h1\b/gi), 1);
   assert.match(privacy, /Sem formulário próprio/i);
