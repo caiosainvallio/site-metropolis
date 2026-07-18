@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assessoria metodológica e estatística | Metropolis Analytics</title>
+<meta name="description" content="Assessoria metodológica e estatística para pesquisa: acompanhamento do processo, tratamento de dados, relatório reprodutível e interpretação. Mestrado, doutorado, hospitais e empresas.">
+<meta name="theme-color" content="#073b6b">
+<link rel="icon" href="public/logo-metropolis.png">
+
+<style>
+/* ==========================================================================
+   METROPOLIS ANALYTICS — Landing de Assessoria
+   Tokens conforme docs/design-system-landing.md
+   Mobile-first. Breakpoints: 48rem (768px) e 68rem (1088px).
+   ========================================================================== */
+
+/* --- 1. Tokens ---------------------------------------------------------- */
+:root {
+  color-scheme: light;
+
+  /* Ação */
+  --color-brand:        #0066cc;
+  --color-brand-hover:  #0058b0;
+  --color-brand-active: #004991;
+
+  /* Campos escuros sólidos */
+  --color-brand-deep:   #073b6b;
+  --color-navy:         #183247;
+
+  /* Superfícies */
+  --color-surface:        #ffffff;
+  --color-surface-subtle: #f3f7fa;
+  --color-brand-tint:     #a8c6e2;
+  --color-brand-soft:     #eaf4ff;
+
+  /* Texto */
+  --color-text:       #243746;
+  --color-text-muted: #526674;
+  --color-on-brand:   #ffffff;
+
+  /* Bordas */
+  --color-border:        #cbd8e1;
+  --color-border-strong: #90a7b7;
+
+  /* Semânticos */
+  --color-success: #18734c;
+  --color-error:   #b3261e;
+  --color-focus:   #0066cc;
+
+  /* Tipografia — sem dependência externa: usa Source Sans 3 se instalada,
+     senão cai para a sans humanista do sistema. */
+  --font-sans: "Source Sans 3", "Source Sans Pro", -apple-system,
+               BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+
+  --font-size-micro:   0.8125rem;
+  --font-size-sm:      0.875rem;
+  --font-size-body:    1.0625rem;
+  --font-size-lead:    clamp(1.125rem, 1.04rem + 0.35vw, 1.35rem);
+  --font-size-h3:      clamp(1.25rem,  1.15rem + 0.45vw, 1.55rem);
+  --font-size-h2:      clamp(2rem,     1.55rem + 1.9vw,  3.25rem);
+  --font-size-display: clamp(2.6rem,   1.9rem  + 3.2vw,  4.75rem);
+
+  /* Espaçamento */
+  --space-1: 0.25rem;  --space-2: 0.5rem;
+  --space-3: 0.75rem;  --space-4: 1rem;
+  --space-5: 1.5rem;   --space-6: 2rem;
+  --space-7: 3rem;     --space-8: 4rem;
+  --space-9: 6rem;
+
+  --section-compact: clamp(3rem,   2rem + 3vw, 4.5rem);
+  --section-normal:  clamp(4.5rem, 3rem + 5vw, 8rem);
+  --section-wide:    clamp(6rem,   4rem + 7vw, 11rem);
+
+  --gutter:    clamp(1.25rem, 0.75rem + 2.5vw, 3.75rem);
+  --container: 80rem;
+
+  /* Forma */
+  --radius-none: 0;
+  --radius-pill: 999px;
+
+  --shadow-none: none;
+  --shadow-menu: 0 6px 16px rgb(24 50 71 / 0.10);
+
+  /* Movimento */
+  --duration-fast:   160ms;
+  --duration-medium: 240ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Degradês — tonais, amplitude baixa, nunca atrás de texto corrido */
+  --gradient-wash: linear-gradient(105deg, #ffffff 0%, #eaf4ff 45%, #dbe9f7 100%);
+  --gradient-deep: linear-gradient(160deg, #073b6b 0%, #05304f 100%);
+
+  --texture-rule: repeating-linear-gradient(
+    180deg,
+    transparent 0 7px,
+    color-mix(in srgb, var(--color-brand) 6%, transparent) 7px 8px
+  );
+
+  --z-sticky: 20;
+  --z-menu:   40;
+  --z-skip:   100;
+}
+
+/* --- 2. Reset e base ---------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 20rem;
+  overflow-x: hidden;
+  color: var(--color-text);
+  background: var(--color-surface);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: 1.7;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+p, li { text-wrap: pretty; }
+p { max-width: 70ch; }
+
+h1, h2, h3 {
+  margin-block-start: 0;
+  color: var(--color-navy);
+  font-weight: 600;
+  text-wrap: balance;
+}
+
+h1 {
+  max-width: 14ch;
+  margin-block-end: var(--space-5);
+  font-size: var(--font-size-display);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+h2 {
+  max-width: 20ch;
+  margin-block-end: var(--space-4);
+  font-size: var(--font-size-h2);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  max-width: 30ch;
+  margin-block-end: var(--space-3);
+  font-size: var(--font-size-h3);
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+}
+
+a { color: inherit; text-decoration-thickness: 0.08em; text-underline-offset: 0.2em; }
+
+:where(a, button, summary, input, textarea, select):focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+::selection { color: var(--color-navy); background: #b9dcff; }
+
+/* --- 3. Utilitários ----------------------------------------------------- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: fixed; z-index: var(--z-skip);
+  inset: var(--space-3) auto auto var(--space-3);
+  min-height: 3rem;
+  display: inline-flex; align-items: center;
+  padding: 0.625rem 1rem;
+  color: var(--color-on-brand);
+  background: var(--color-brand);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(calc(-100% - 2rem));
+}
+.skip-link:focus { transform: translateY(0); }
+
+.wrap {
+  width: min(100%, var(--container));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section          { padding-block: var(--section-normal); }
+.section--compact { padding-block: var(--section-compact); }
+.section--wide    { padding-block: var(--section-wide); }
+
+.section-heading      { margin-bottom: var(--space-7); }
+.section-heading p    { color: var(--color-text-muted); font-size: var(--font-size-lead); margin: 0; }
+.section-heading h2   { margin-bottom: var(--space-4); }
+
+.kicker {
+  margin: 0 0 var(--space-4);
+  color: var(--color-brand);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.lead      { color: var(--color-text-muted); font-size: var(--font-size-lead); }
+.microcopy { color: var(--color-text-muted); font-size: var(--font-size-micro); }
+
+/* --- 4. Botões ---------------------------------------------------------- */
+.button {
+  min-height: 3rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 0.875rem 1.5rem;
+  border: 0; border-radius: var(--radius-none);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out);
+}
+
+.button--primary        { color: var(--color-on-brand); background: var(--color-brand); }
+.button--primary:hover  { background: var(--color-brand-hover); }
+.button--primary:active { background: var(--color-brand-active); }
+
+.button--light        { color: var(--color-brand-deep); background: var(--color-on-brand); }
+.button--light:hover  { color: var(--color-navy); background: var(--color-brand-soft); }
+
+.button--secondary {
+  color: var(--color-navy);
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+}
+.button--secondary:hover { border-color: var(--color-brand); color: var(--color-brand); }
+
+.text-link {
+  min-height: 2.75rem;
+  display: inline-flex; align-items: center;
+  color: var(--color-brand);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+.text-link:hover { color: var(--color-brand-hover); }
+
+/* --- 5. Cabeçalho ------------------------------------------------------- */
+.site-header {
+  position: sticky; z-index: var(--z-sticky); top: 0;
+  min-height: 4.5rem;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  min-height: 2.75rem;
+  display: inline-flex; align-items: center; gap: var(--space-3);
+  flex: 0 0 auto;
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  color: var(--color-navy);
+}
+.brand strong { color: var(--color-brand); font-weight: 700; }
+
+.nav-desktop { display: none; }
+
+.nav-toggle {
+  min-width: 3rem; min-height: 3rem;
+  display: inline-flex; align-items: center; gap: var(--space-2);
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-none);
+  color: var(--color-navy);
+  background: transparent;
+  font: inherit; font-size: var(--font-size-sm); font-weight: 700;
+  cursor: pointer;
+}
+.nav-toggle:hover { border-color: var(--color-brand); color: var(--color-brand); }
+
+.nav-toggle-icon {
+  width: 1rem; height: 1rem;
+  position: relative;
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  position: absolute; left: 0; top: 50%;
+  width: 100%; height: 2px;
+  background: currentColor;
+  content: "";
+}
+.nav-toggle-icon::after { transform: rotate(90deg); }
+.nav-toggle[aria-expanded="true"] .nav-toggle-icon { transform: rotate(45deg); }
+
+.nav-mobile {
+  position: absolute; z-index: var(--z-menu);
+  top: 100%; right: var(--gutter); left: var(--gutter);
+  display: none;
+  flex-direction: column;
+  padding: var(--space-2);
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-menu);
+}
+.nav-mobile[data-open="true"] { display: flex; }
+
+.nav-mobile a {
+  min-height: 3rem;
+  display: flex; align-items: center;
+  padding-inline: var(--space-3);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out);
+}
+.nav-mobile a:hover { color: var(--color-brand); background: var(--color-surface-subtle); }
+.nav-mobile .nav-cta {
+  margin-top: var(--space-2);
+  color: var(--color-on-brand);
+  background: var(--color-brand);
+  font-weight: 700;
+  justify-content: center;
+}
+.nav-mobile .nav-cta:hover { color: var(--color-on-brand); background: var(--color-brand-hover); }
+
+/* --- 6. Hero ------------------------------------------------------------ */
+.hero {
+  position: relative;
+  background: var(--gradient-wash);
+  overflow: hidden;
+}
+/* Assinatura "linha de raciocínio": réguas finas, só onde não há texto */
+.hero::after {
+  position: absolute; inset: 0;
+  background: var(--texture-rule);
+  opacity: 0.55;
+  pointer-events: none;
+  content: "";
+}
+.hero > .wrap { position: relative; z-index: 1; }
+
+.hero .lead { max-width: 52ch; margin-block: 0 var(--space-6); }
+
+.hero-actions {
+  display: flex; flex-direction: column; align-items: stretch;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.hero-actions .button, .hero-actions .text-link { width: 100%; justify-content: center; }
+
+.hero .microcopy { max-width: 46ch; margin: 0; }
+
+/* --- 7. Blocos separados por régua ------------------------------------- */
+.block-list { display: grid; gap: 0; }
+
+.block {
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+.block:first-child { border-top: 1px solid var(--color-border-strong); }
+.block p:last-child { margin-bottom: 0; }
+.block p { color: var(--color-text-muted); }
+
+.block-number {
+  width: 2.25rem; height: 2.25rem;
+  display: grid; place-items: center;
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--color-brand);
+  border-radius: var(--radius-pill);
+  color: var(--color-brand);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+}
+
+/* --- 8. Seção de problemas (superfície sutil) -------------------------- */
+.surface-subtle { background: var(--color-surface-subtle); }
+
+.problem-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-border-strong); }
+.problem-list li {
+  display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: var(--space-4);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+.problem-list li::before {
+  color: var(--color-brand);
+  font-weight: 700;
+  content: "—";
+}
+
+/* --- 9. Destaque de reuniões (painel escuro) --------------------------- */
+.panel-deep {
+  color: var(--color-on-brand);
+  background: var(--gradient-deep);
+}
+.panel-deep h2, .panel-deep h3 { color: var(--color-on-brand); }
+.panel-deep p { color: #d9e9f7; }
+.panel-deep .kicker { color: #9dccff; }
+
+/* --- 10. Processo ------------------------------------------------------- */
+.process-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--color-border-strong); }
+.process-list li {
+  display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: var(--space-4);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+.process-list li > span {
+  width: 2.25rem; height: 2.25rem;
+  display: grid; place-items: center;
+  border: 1px solid var(--color-brand);
+  border-radius: var(--radius-pill);
+  color: var(--color-brand);
+  font-weight: 700;
+}
+.process-list h3 { margin-bottom: var(--space-2); }
+.process-list p  { margin: 0; color: var(--color-text-muted); }
+
+/* --- 11. Modalidades (painel tint) ------------------------------------- */
+.panel-tint { background: var(--color-brand-tint); }
+.panel-tint h2 { color: var(--color-brand-deep); }
+.panel-tint p  { color: var(--color-navy); max-width: 60ch; }
+
+/* --- 12. Equipe --------------------------------------------------------- */
+.team-list { display: grid; gap: var(--space-7); }
+
+.team-member {
+  display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: var(--space-5);
+  align-items: start;
+  padding-top: var(--space-6);
+  border-top: 2px solid var(--color-brand);
+}
+.team-avatar {
+  width: 100%; aspect-ratio: 1;
+  object-fit: cover; object-position: center 35%;
+  border-radius: var(--radius-pill);
+}
+.team-role { margin: 0 0 var(--space-2); color: var(--color-brand); font-size: var(--font-size-sm); font-weight: 700; }
+.team-member h3 { margin-bottom: var(--space-3); }
+.team-member p  { margin: 0; color: var(--color-text-muted); }
+
+/* --- 13. FAQ ------------------------------------------------------------ */
+.faq-list { border-top: 1px solid var(--color-border-strong); }
+.faq-item { border-bottom: 1px solid var(--color-border); }
+.faq-item h3 { max-width: none; margin: 0; font-size: var(--font-size-body); }
+
+.faq-trigger {
+  width: 100%; min-height: 4rem;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border: 0; border-radius: var(--radius-none);
+  color: var(--color-navy);
+  background: transparent;
+  font: inherit; font-size: var(--font-size-h3); font-weight: 600;
+  line-height: 1.3;
+  text-align: left;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.faq-trigger:hover { color: var(--color-brand); }
+
+.faq-sign {
+  width: 2.75rem; height: 2.75rem; flex: 0 0 auto;
+  display: grid; place-items: center;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  color: var(--color-brand);
+  font-size: 1.35rem; font-weight: 400;
+  transition: border-color var(--duration-fast) var(--ease-out);
+}
+.faq-trigger:hover .faq-sign { border-color: var(--color-brand); }
+
+.faq-answer { padding: 0 0 var(--space-6); }
+.faq-answer p { margin: 0; color: var(--color-text-muted); }
+
+/* --- 14. CTA final ------------------------------------------------------ */
+.cta h2 { max-width: 16ch; }
+.cta .lead { color: #d9e9f7; max-width: 46ch; }
+.cta-action { margin-top: var(--space-6); }
+.cta-action .button { width: 100%; }
+.cta-action .microcopy { margin: var(--space-4) 0 0; color: #c2d8ea; }
+
+/* --- 15. Rodapé --------------------------------------------------------- */
+.site-footer {
+  padding-block: var(--space-7);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+.footer-inner { display: grid; gap: var(--space-5); }
+.site-footer p { margin: 0; max-width: 45ch; }
+.footer-links { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+.footer-links a {
+  min-height: 2.75rem;
+  display: inline-flex; align-items: center;
+  color: var(--color-brand);
+  font-weight: 600;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+.footer-links a:hover { color: var(--color-brand-hover); }
+
+/* --- 16. Reveal --------------------------------------------------------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 520ms var(--ease-out), transform 520ms var(--ease-out);
+}
+[data-reveal].is-revealed { opacity: 1; transform: none; }
+/* Sem JS: nada fica escondido */
+.no-js [data-reveal] { opacity: 1; transform: none; }
+
+/* ==========================================================================
+   17. Tablet — a partir de 48rem (768px)
+   ========================================================================== */
+@media (min-width: 48rem) {
+  html { scroll-padding-top: 6rem; }
+
+  .hero-actions {
+    flex-direction: row; align-items: center; flex-wrap: wrap;
+    gap: var(--space-4) var(--space-5);
+  }
+  .hero-actions .button, .hero-actions .text-link { width: auto; }
+
+  .section-heading {
+    display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+    margin-bottom: var(--space-8);
+  }
+  .section-heading h2 { margin-bottom: 0; }
+  .section-heading p  { margin-top: 0.35rem; }
+
+  .block-list { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); }
+  .block-list--stack { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-6) var(--space-7); }
+  .block { border-top: 1px solid var(--color-border-strong); }
+
+  .problem-list { columns: 2; column-gap: var(--space-7); border-top: 0; }
+  .problem-list li { break-inside: avoid; border-top: 1px solid var(--color-border); border-bottom: 0; }
+
+  .process-list li { grid-template-columns: 4rem minmax(0, 1fr); gap: var(--space-5); }
+  .process-list li > div {
+    display: grid; grid-template-columns: minmax(11rem, 0.7fr) minmax(0, 1.3fr);
+    gap: var(--space-6);
+  }
+  .process-list h3 { margin-bottom: 0; }
+
+  .team-list { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 6vw, 5rem); }
+  .team-member { grid-template-columns: clamp(6.5rem, 12vw, 9rem) minmax(0, 1fr); }
+
+  .faq-answer { padding-right: min(6rem, 8vw); }
+
+  .cta-inner {
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(16rem, 0.9fr);
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: center;
+  }
+  .cta-action { margin-top: 0; }
+  .cta-action .button { width: auto; }
+
+  .footer-inner {
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .footer-links { justify-content: flex-end; }
+}
+
+/* ==========================================================================
+   18. Desktop — a partir de 68rem (1088px)
+   ========================================================================== */
+@media (min-width: 68rem) {
+  .nav-toggle, .nav-mobile { display: none; }
+
+  .nav-desktop {
+    display: flex; align-items: center; justify-content: flex-end;
+    gap: clamp(0.25rem, 1vw, 0.75rem);
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+  .nav-desktop a {
+    min-height: 2.75rem;
+    display: inline-flex; align-items: center;
+    padding-inline: 0.625rem;
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-out);
+  }
+  .nav-desktop a:hover { color: var(--color-brand); }
+  .nav-desktop a[aria-current="location"] {
+    color: var(--color-brand);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.55rem;
+  }
+  .nav-desktop .nav-cta {
+    padding-inline: 1.25rem;
+    color: var(--color-on-brand);
+    background: var(--color-brand);
+    font-weight: 700;
+  }
+  .nav-desktop .nav-cta:hover { color: var(--color-on-brand); background: var(--color-brand-hover); }
+
+  .hero-copy { max-width: 60ch; }
+}
+
+/* ==========================================================================
+   19. Movimento reduzido
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+
+<!-- ====================== CABEÇALHO ====================== -->
+<header class="site-header wrap">
+  <a class="brand" href="#inicio">
+    <img src="public/logo-metropolis.png" alt="" width="40" height="40" decoding="async">
+    <span>Metropolis <strong>Analytics</strong></span>
+  </a>
+
+  <nav class="nav-desktop" aria-label="Navegação principal">
+    <a href="#para-quem">Para quem é</a>
+    <a href="#como-ajudamos">Como ajudamos</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#quem-conduz">Quem conduz</a>
+    <a href="#faq">Dúvidas</a>
+    <a class="nav-cta" data-wa href="https://wa.me/5511980158332" target="_blank" rel="noopener noreferrer">
+      Conversar sobre sua pesquisa<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span>
+    </a>
+  </nav>
+
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-mobile">
+    Menu <span class="nav-toggle-icon" aria-hidden="true"></span>
+  </button>
+
+  <nav class="nav-mobile" id="menu-mobile" data-open="false" aria-label="Navegação principal">
+    <a href="#para-quem">Para quem é</a>
+    <a href="#como-ajudamos">Como ajudamos</a>
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#quem-conduz">Quem conduz</a>
+    <a href="#faq">Dúvidas</a>
+    <a class="nav-cta" data-wa href="https://wa.me/5511980158332" target="_blank" rel="noopener noreferrer">
+      Conversar sobre sua pesquisa<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span>
+    </a>
+  </nav>
+</header>
+
+<main id="conteudo">
+
+  <!-- ====================== HERO ====================== -->
+  <section class="hero section" id="inicio" aria-labelledby="titulo-hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="kicker">Assessoria metodológica e estatística</p>
+        <h1 id="titulo-hero">Sua pesquisa merece um método que se sustenta.</h1>
+        <p class="lead">
+          Da definição da pergunta à interpretação dos resultados, acompanhamos cada
+          decisão do seu estudo — com análise reprodutível, relatório claro e conversas
+          que fazem você entender o próprio dado.
+        </p>
+        <div class="hero-actions">
+          <a class="button button--primary" data-wa href="https://wa.me/5511980158332" target="_blank" rel="noopener noreferrer">
+            Conversar sobre sua pesquisa<span class="sr-only"> pelo WhatsApp (abre em nova aba)</span>
+          </a>
+          <a class="text-link" href="#como-funciona">Ver como funciona</a>
+        </div>
+        <p class="microcopy">
+          A conversa começa no WhatsApp, sem compromisso e sem necessidade de enviar
+          arquivos no primeiro contato.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== PARA QUEM É ====================== -->
+  <section class="section" id="para-quem" aria-labelledby="titulo-para-quem">
+    <div class="wrap">
+      <div class="section-heading" data-reveal>
+        <h2 id="titulo-para-quem">Três situações, o mesmo problema de fundo</h2>
+        <p>
+          Os contextos mudam, mas a dificuldade é a mesma: existe um dado, existe uma
+          pergunta e falta a ponte metodológica entre os dois.
+        </p>
+      </div>
+
+      <div class="block-list" data-reveal>
+        <article class="block">
+          <h3>Mestrado e doutorado</h3>
+          <p>
+            Você precisa defender escolhas metodológicas diante de uma banca e traduzir a
+            análise em um capítulo que se sustente. O prazo é real e a orientação nem
+            sempre alcança a parte estatística.
+          </p>
+        </article>
+        <article class="block">
+          <h3>Hospitais e serviços de saúde</h3>
+          <p>
+            Há dados assistenciais acumulados e perguntas clínicas legítimas, mas falta
+            quem estruture o banco, escolha o método adequado e transforme isso em
+            evidência apresentável.
+          </p>
+        </article>
+        <article class="block">
+          <h3>Empresas</h3>
+          <p>
+            Você tem uma base própria e quer mais do que um painel descritivo — quer saber
+            se o efeito observado se sustenta, com o rigor que uma decisão de negócio
+            exige.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== O QUE TRAVA ====================== -->
+  <section class="section surface-subtle" id="o-que-trava" aria-labelledby="titulo-trava">
+    <div class="wrap">
+      <div class="section-heading" data-reveal>
+        <h2 id="titulo-trava">Onde as pesquisas costumam parar</h2>
+        <p>Nenhum desses pontos é falta de esforço. São etapas que exigem um tipo específico de experiência.</p>
+      </div>
+
+      <ul class="problem-list" data-reveal>
+        <li>O banco de dados chegou bruto, inconsistente e sem documentação de como foi coletado.</li>
+        <li>O teste estatístico foi escolhido antes de o desenho do estudo estar claro.</li>
+        <li>A análise ficou pronta, mas ninguém consegue explicar por que aquele método e não outro.</li>
+        <li>Os resultados existem, e a discussão não sai do lugar.</li>
+        <li>A banca ou o revisor pediu uma correção metodológica que exigiria refazer tudo.</li>
+        <li>O software devolveu um número e não há segurança sobre o que ele significa.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ====================== COMO AJUDAMOS ====================== -->
+  <section class="section" id="como-ajudamos" aria-labelledby="titulo-ajuda">
+    <div class="wrap">
+      <div class="section-heading" data-reveal>
+        <h2 id="titulo-ajuda">Assessoria que percorre o estudo inteiro</h2>
+        <p>
+          Você não precisa chegar com o método definido. Entramos no ponto em que a
+          pesquisa está e seguimos até onde fizer sentido.
+        </p>
+      </div>
+
+      <div class="block-list block-list--stack" data-reveal>
+        <article class="block">
+          <p class="block-number" aria-hidden="true">1</p>
+          <h3>Acompanhamento do processo</h3>
+          <p>
+            Estamos junto nas decisões, não apenas na entrega. Cada escolha de desenho,
+            variável ou método é discutida, justificada e registrada — para que você saiba
+            defender o que foi feito, e não apenas reproduzi-lo.
+          </p>
+        </article>
+        <article class="block">
+          <p class="block-number" aria-hidden="true">2</p>
+          <h3>Tratamento e limpeza dos dados</h3>
+          <p>
+            Organizamos o banco antes de qualquer análise: inconsistências, valores
+            ausentes, duplicidades, categorias e formatos. Essa etapa é documentada, porque
+            é ela que determina se o resultado é confiável.
+          </p>
+        </article>
+        <article class="block">
+          <p class="block-number" aria-hidden="true">3</p>
+          <h3>Relatório e análise reprodutível</h3>
+          <p>
+            Você recebe tabelas, figuras e um relatório com o passo a passo da análise.
+            Reprodutível significa que qualquer pessoa — sua banca, um revisor, um colega —
+            pode conferir como se chegou a cada número.
+          </p>
+        </article>
+        <article class="block">
+          <p class="block-number" aria-hidden="true">4</p>
+          <h3>Redação e interpretação</h3>
+          <p>
+            Escrevemos o texto técnico que conecta resultado e significado: o que o dado
+            mostra, o que ele não mostra e quais limites precisam ser declarados. Material
+            pronto para entrar em dissertação, tese, manuscrito ou apresentação.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== REUNIÕES (painel escuro) ====================== -->
+  <section class="section panel-deep" id="reunioes" aria-labelledby="titulo-reunioes">
+    <div class="wrap" data-reveal>
+      <p class="kicker">O que nos diferencia</p>
+      <h2 id="titulo-reunioes">Reuniões até a explicação ser sua.</h2>
+      <p class="lead">
+        Toda entrega vem acompanhada de conversa. Reunimos para percorrer a análise
+        junto com você até que a explicação seja sua, e não nossa. É a diferença entre
+        receber um resultado e conseguir sustentá-lo em uma arguição.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====================== COMO FUNCIONA ====================== -->
+  <section class="section" id="como-funciona" aria-labelledby="titulo-processo">
+    <div class="wrap">
+      <div class="section-heading" data-reveal>
+        <h2 id="titulo-processo">Um percurso claro, do primeiro contato à entrega</h2>
+        <p>Você sabe o que será feito, por quê e o que receberá ao final — antes de começar.</p>
+      </div>
+
+      <ol class="process-list" data-reveal>
+        <li>
+          <span aria-hidden="true">1</span>
+          <div>
+            <h3>Conversa inicial</h3>
+            <p>
+              Você apresenta o estágio da pesquisa, a principal dúvida e o que já foi
+              definido ou coletado. Sem custo e sem compromisso.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span aria-hidden="true">2</span>
+          <div>
+            <h3>Diagnóstico e escopo</h3>
+            <p>
+              Avaliamos o material e propomos o que faz sentido: as etapas, as entregas, os
+              prazos e os pontos de revisão. Você aprova antes de começar.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span aria-hidden="true">3</span>
+          <div>
+            <h3>Execução acompanhada</h3>
+            <p>
+              O trabalho avança com contato aberto. As decisões são comunicadas conforme
+              acontecem — você não recebe surpresas no final.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span aria-hidden="true">4</span>
+          <div>
+            <h3>Entrega e alinhamento</h3>
+            <p>
+              Você recebe o material acordado e passamos por ele em reunião, com espaço para
+              ajustes e para as dúvidas que aparecem depois.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ====================== MODALIDADES (painel tint) ====================== -->
+  <section class="section--compact section panel-tint" id="modalidades" aria-labelledby="titulo-modalidades">
+    <div class="wrap" data-reveal>
+      <h2 id="titulo-modalidades">Presencial, remoto ou híbrido</h2>
+      <p>
+        O acompanhamento funciona à distância com a mesma qualidade — reuniões por
+        vídeo, material compartilhado e contato direto ao longo do processo. Encontros
+        presenciais são possíveis na região de São Paulo, quando a etapa justificar.
+        A escolha é sua e pode mudar durante o projeto.
+      </p>
+    </div>
+  </section>
+
+  <!-- ====================== QUEM CONDUZ ====================== -->
+  <section class="section" id="quem-conduz" aria-labelledby="titulo-equipe">
+    <div class="wrap">
+      <div class="section-heading" data-reveal>
+        <h2 id="titulo-equipe">Quem conduz o trabalho</h2>
+        <p>O contato é direto com quem executa. Não há camada de intermediação entre você e a análise.</p>
+      </div>
+
+      <div class="team-list" data-reveal>
+        <article class="team-member">
+          <img class="team-avatar" src="public/avatar-caio.jpeg"
+               alt="Retrato de Caio Sain Vallio"
+               width="800" height="800" loading="lazy" decoding="async">
+          <div>
+            <p class="team-role">Pesquisa, epidemiologia e modelagem</p>
+            <h3>Caio Sain Vallio</h3>
+            <p>
+              Doutor em Fisioterapia, pesquisador e autor ou coautor de publicações em
+              epidemiologia, modelagem e ciência de dados em saúde.
+            </p>
+          </div>
+        </article>
+
+        <article class="team-member">
+          <img class="team-avatar" src="public/avatar-vitor.jpeg"
+               alt="Retrato de Vitor Sain Vallio"
+               width="800" height="800" loading="lazy" decoding="async">
+          <div>
+            <p class="team-role">Ciência de dados e análise estatística</p>
+            <h3>Vitor Sain Vallio</h3>
+            <p>
+              Mestre em Ciências da Saúde e cientista de dados, com experiência em análise
+              epidemiológica e modelagem estatística.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== FAQ ====================== -->
+  <section class="section surface-subtle" id="faq" aria-labelledby="titulo-faq">
+    <div class="wrap">
+      <div class="section-heading" data-reveal>
+        <h2 id="titulo-faq">Antes de conversar</h2>
+        <p>Respostas diretas para saber se a assessoria faz sentido para a sua pesquisa.</p>
+      </div>
+
+      <div class="faq-list" data-reveal>
+        <article class="faq-item">
+          <h3>
+            <button class="faq-trigger" type="button" aria-expanded="true" aria-controls="faq-0">
+              Em que momento devo procurar a assessoria?
+              <span class="faq-sign" aria-hidden="true">−</span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-0">
+            <p>
+              Em qualquer um. O contato antes da coleta amplia as opções metodológicas e
+              evita retrabalho, mas pesquisas em andamento — ou já finalizadas e com pedido
+              de correção — também são avaliadas.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <h3>
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-1">
+              Vocês atendem apenas a área da saúde?
+              <span class="faq-sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-1" hidden>
+            <p>
+              A experiência da equipe é concentrada em pesquisa quantitativa em saúde, e é aí
+              que entregamos mais. Também atendemos empresas e projetos de outras áreas
+              quando a pergunta é quantitativa e os dados permitem. Não trabalhamos com
+              análise qualitativa.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <h3>
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-2">
+              Que tipos de estudo vocês cobrem?
+              <span class="faq-sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-2" hidden>
+            <p>
+              Estudos observacionais, ensaios clínicos, estudos diagnósticos, validação de
+              instrumentos, revisões sistemáticas com metanálise e avaliações econômicas.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <h3>
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-3">
+              O que exatamente eu recebo?
+              <span class="faq-sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-3" hidden>
+            <p>
+              Depende do escopo acordado. Pode incluir plano de análise, banco tratado e
+              documentado, relatório reprodutível, tabelas e figuras prontas para publicação
+              e o texto técnico de métodos e resultados. Definimos isso juntos antes de
+              começar.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <h3>
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-4">
+              Meus dados estão seguros?
+              <span class="faq-sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-4" hidden>
+            <p>
+              Sim. Dados, documentos e informações de projeto são tratados com
+              confidencialidade. Antes de qualquer compartilhamento, alinhamos o que é
+              necessário enviar, quem terá acesso e por qual canal.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <h3>
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-5">
+              Vocês assumem a autoria da minha pesquisa?
+              <span class="faq-sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-5" hidden>
+            <p>
+              Não. O trabalho é seu. Atuamos como apoio metodológico e estatístico — a
+              condução, as decisões finais e a autoria permanecem com você e sua orientação.
+            </p>
+          </div>
+        </article>
+
+        <article class="faq-item">
+          <h3>
+            <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-6">
+              Quanto tempo leva?
+              <span class="faq-sign" aria-hidden="true">+</span>
+            </button>
+          </h3>
+          <div class="faq-answer" id="faq-6" hidden>
+            <p>
+              Varia com o estágio do estudo, o estado do banco e a complexidade da análise.
+              O prazo é estimado no diagnóstico inicial, antes de qualquer compromisso.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== CTA FINAL ====================== -->
+  <section class="section panel-deep cta" id="contato" aria-labelledby="titulo-contato">
+    <div class="wrap cta-inner" data-reveal>
+      <div>
+        <p class="kicker">Próximo passo</p>
+        <h2 id="titulo-contato">Conte em que ponto está sua pesquisa.</h2>
+      </div>
+      <div class="cta-action">
+        <p class="lead">
+          Uma conversa inicial costuma ser suficiente para saber se conseguimos ajudar e
+          o que faria sentido no seu caso.
+        </p>
+        <a class="button button--light" data-wa href="https://wa.me/5511980158332" target="_blank" rel="noopener noreferrer">
+          Abrir conversa no WhatsApp<span class="sr-only"> (abre em nova aba)</span>
+        </a>
+        <p class="microcopy">Nenhuma mensagem é enviada automaticamente. Você revisa antes de mandar.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ====================== RODAPÉ ====================== -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <a class="brand" href="#inicio">
+      <img src="public/logo-metropolis.png" alt="" width="36" height="36" loading="lazy" decoding="async">
+      <span>Metropolis <strong>Analytics</strong></span>
+    </a>
+    <p>Assessoria metodológica e estatística para pesquisa.</p>
+    <nav class="footer-links" aria-label="Navegação do rodapé">
+      <a href="/privacidade">Política de Privacidade</a>
+      <a href="#inicio">Voltar ao topo</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---- Mensagem pré-preenchida do WhatsApp (aprimoramento progressivo).
+         Sem JS, o link continua funcionando — apenas sem o texto. ---- */
+  var mensagem = [
+    "Olá, gostaria de conversar sobre assessoria metodológica e estatística.",
+    "",
+    "Tipo de projeto (mestrado, doutorado, institucional ou empresarial):",
+    "Etapa atual:",
+    "Principal dúvida ou necessidade:",
+    "Prazo relevante, se houver:"
+  ].join("\n");
+
+  document.querySelectorAll("a[data-wa]").forEach(function (link) {
+    link.href = link.href.split("?")[0] + "?text=" + encodeURIComponent(mensagem);
+  });
+
+  /* ---- Menu mobile ---- */
+  var toggle = document.querySelector(".nav-toggle");
+  var menu   = document.getElementById("menu-mobile");
+
+  function fecharMenu() {
+    if (!toggle || !menu) return;
+    toggle.setAttribute("aria-expanded", "false");
+    menu.setAttribute("data-open", "false");
+  }
+
+  if (toggle && menu) {
+    toggle.addEventListener("click", function () {
+      var aberto = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!aberto));
+      menu.setAttribute("data-open", String(!aberto));
+    });
+
+    menu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", fecharMenu);
+    });
+
+    document.addEventListener("keydown", function (evento) {
+      if (evento.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+        fecharMenu();
+        toggle.focus();
+      }
+    });
+
+    document.addEventListener("click", function (evento) {
+      if (!menu.contains(evento.target) && !toggle.contains(evento.target)) fecharMenu();
+    });
+  }
+
+  /* ---- FAQ: um aberto por vez, teclado nativo via <button> ---- */
+  var gatilhos = document.querySelectorAll(".faq-trigger");
+
+  gatilhos.forEach(function (gatilho) {
+    gatilho.addEventListener("click", function () {
+      var estavaAberto = gatilho.getAttribute("aria-expanded") === "true";
+
+      gatilhos.forEach(function (outro) {
+        outro.setAttribute("aria-expanded", "false");
+        outro.querySelector(".faq-sign").textContent = "+";
+        document.getElementById(outro.getAttribute("aria-controls")).hidden = true;
+      });
+
+      if (!estavaAberto) {
+        gatilho.setAttribute("aria-expanded", "true");
+        gatilho.querySelector(".faq-sign").textContent = "−";
+        document.getElementById(gatilho.getAttribute("aria-controls")).hidden = false;
+      }
+    });
+  });
+
+  /* ---- Reveal sutil ao rolar ---- */
+  var movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var alvos = document.querySelectorAll("[data-reveal]");
+
+  if (movimentoReduzido || !("IntersectionObserver" in window)) {
+    alvos.forEach(function (alvo) { alvo.classList.add("is-revealed"); });
+  } else {
+    var observador = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("is-revealed");
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { rootMargin: "0px 0px -10%", threshold: 0.08 });
+
+    alvos.forEach(function (alvo) { observador.observe(alvo); });
+  }
+
+  /* ---- Marca a seção ativa na navegação de desktop ---- */
+  var linksNav = document.querySelectorAll(".nav-desktop a[href^='#']");
+  var secoes = [];
+
+  linksNav.forEach(function (link) {
+    var alvo = document.querySelector(link.getAttribute("href"));
+    if (alvo) secoes.push({ link: link, elemento: alvo });
+  });
+
+  if (secoes.length && "IntersectionObserver" in window) {
+    var observadorNav = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (!entrada.isIntersecting) return;
+        linksNav.forEach(function (link) { link.removeAttribute("aria-current"); });
+        var atual = secoes.find(function (secao) { return secao.elemento === entrada.target; });
+        if (atual) atual.link.setAttribute("aria-current", "location");
+      });
+    }, { rootMargin: "-18% 0px -62%", threshold: 0 });
+
+    secoes.forEach(function (secao) { observadorNav.observe(secao.elemento); });
+  }
+})();
+</script>
+</body>
+</html>
