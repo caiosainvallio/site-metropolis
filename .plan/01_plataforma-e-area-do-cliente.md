@@ -1,7 +1,18 @@
 # Plano de plataforma — do cartão de visita à área do cliente
 
 Documento para aprovação. Estruturado em etapas independentes, cada uma com argumentos a favor e contra.
-Nada aqui foi implementado. Escrito em 18 de julho de 2026.
+Escrito em 18 de julho de 2026.
+
+## Estado das etapas
+
+- **Etapa 0 — concluída** em 19 de julho de 2026. CI, Dependabot e cabeçalhos de segurança na `main`.
+- **Etapa 1 — decidida** em 19 de julho de 2026. Ver [ADR-001](../docs/adr-001-plataforma-do-portal.md):
+  portal transporta apenas entregáveis (sem upload de banco pelo cliente); site e portal em
+  aplicações separadas; Cloudflare em conta própria + Supabase, mantendo o vinext.
+- **Etapas 2–8 — pendentes.** As seções abaixo que discutem alternativas de plataforma ficam
+  como registro do raciocínio; onde houver divergência, o ADR-001 prevalece.
+
+Seguem em aberto e bloqueiam a Etapa 5: domínio próprio e a definição de controladora ou operadora.
 
 ---
 
@@ -270,11 +281,15 @@ Registrados porque a decisão é de vocês e merece o contraditório:
 
 ## 6. O que preciso de vocês para seguir
 
-1. Aprovação ou ajuste da **separação site/portal** (seção 2) — condiciona tudo.
-2. Decisão sobre **vinext** (1.1) — migrar cedo é barato, tarde não é.
-3. Definição de escopo do dado: **clientes vão subir bancos brutos, ou só recebem entregáveis?** Muda o peso da Etapa 5 substancialmente.
-4. Confirmação sobre **domínio próprio** e sobre quem responde juridicamente pelos dados.
-5. Prioridade entre **Etapa 0 agora** (higiene, baixo custo, resultado imediato) e **Etapa 1 agora** (decisões, sem resultado visível).
+Respondido em 19 de julho de 2026, registrado no [ADR-001](../docs/adr-001-plataforma-do-portal.md):
+
+1. ~~Separação site/portal~~ → **duas aplicações**, em monorepo.
+2. ~~Decisão sobre vinext~~ → **permanece**, como consequência de ficar em Cloudflare. Risco mitigado pela RLS no banco, com gatilho explícito de reavaliação.
+3. ~~Escopo do dado~~ → **só entregáveis**. O cliente não faz upload na primeira versão.
+4. **Domínio próprio** e **controladora ou operadora** — seguem em aberto. Bloqueiam a Etapa 5, não as Etapas 2 a 4.
+5. ~~Prioridade Etapa 0 vs 1~~ → ambas concluídas.
+
+Próximo passo: Etapa 2 (monorepo), que não depende dos itens em aberto.
 
 ---
 
