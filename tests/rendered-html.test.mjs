@@ -7,13 +7,13 @@ const forbiddenPolicy = JSON.parse(
   await readFile(new URL("config/forbidden-content.json", root), "utf8"),
 );
 
-async function render(pathname = "/") {
+async function render(pathname = "/", origin = "http://localhost") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}-${pathname}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request(new URL(pathname, "http://localhost"), {
+    new Request(new URL(pathname, origin), {
       headers: { accept: "text/html" },
     }),
     { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } },
@@ -191,6 +191,31 @@ test("renderiza /privacidade e mantém navegação interna para a política", as
   // Guarda da migração para .wrap: sem isso a rota renderiza sem contêiner
   // e nenhum outro teste perceberia.
   assert.match(privacy, /class="wrap/i);
+});
+
+test("aplica cabeçalhos de segurança nas respostas do worker", async () => {
+  for (const pathname of ["/", "/privacidade"]) {
+    const response = await render(pathname);
+
+    assert.equal(response.headers.get("x-content-type-options"), "nosniff", pathname);
+    assert.equal(response.headers.get("x-frame-options"), "DENY", pathname);
+    assert.equal(response.headers.get("referrer-policy"), "strict-origin-when-cross-origin", pathname);
+    assert.match(response.headers.get("permissions-policy") ?? "", /camera=\(\)/, pathname);
+
+    // A resposta continua íntegra depois de ser reconstruída com os cabeçalhos.
+    assert.equal(response.status, 200);
+    assert.match(await response.text(), /<\/html>/i);
+  }
+});
+
+test("envia HSTS apenas sob https", async () => {
+  const insecure = await render("/", "http://localhost");
+  const secure = await render("/", "https://metropolis.test");
+
+  // Em http o cabeçalho não vai: enviá-lo faria o navegador forçar https
+  // em localhost, quebrando o desenvolvimento local.
+  assert.equal(insecure.headers.get("strict-transport-security"), null);
+  assert.match(secure.headers.get("strict-transport-security") ?? "", /max-age=31536000/);
 });
 
 test("declara salvaguardas CSS para responsividade e acessibilidade", async () => {
