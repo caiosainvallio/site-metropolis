@@ -141,7 +141,7 @@ Avaliamos o material e propomos o que faz sentido: as etapas, as entregas, os
 prazos e os pontos de revisão. Você aprova antes de começar.
 
 **3. Execução acompanhada**
-O trabalho avança com contato aberto. As decisões são comunicadas conforme
+A execução avança com contato aberto. As decisões são comunicadas conforme
 acontecem — você não recebe surpresas no final.
 
 **4. Entrega e alinhamento**
@@ -166,7 +166,7 @@ A escolha é sua e pode mudar durante o projeto.
 ## 7. Quem conduz
 
 **Título:**
-### Quem conduz o trabalho
+### Quem conduz a análise
 
 **Apoio:**
 O contato é direto com quem executa. Não há camada de intermediação entre você
@@ -216,7 +216,7 @@ confidencialidade. Antes de qualquer compartilhamento, alinhamos o que é
 necessário enviar, quem terá acesso e por qual canal.
 
 **Vocês assumem a autoria da minha pesquisa?**
-Não. O trabalho é seu. Atuamos como apoio metodológico e estatístico — a
+Não. A pesquisa é sua. Atuamos como apoio metodológico e estatístico — a
 condução, as decisões finais e a autoria permanecem com você e sua orientação.
 
 **Quanto tempo leva?**

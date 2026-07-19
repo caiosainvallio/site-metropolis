@@ -27,14 +27,14 @@ export default function PrivacyPage() {
       <RevealController />
 
       <main id="conteudo" className="privacy-page">
-        <section className="section section--compact privacy-intro" aria-labelledby="titulo-privacidade" data-reveal>
+        <section className="wrap section section--compact privacy-intro" aria-labelledby="titulo-privacidade" data-reveal>
           <p className="privacy-kicker">Política de Privacidade</p>
           <h1 id="titulo-privacidade">Privacidade no site e nas conversas</h1>
           <p className="lead">Esta página explica, em linguagem direta, quais informações podem circular quando você visita o site ou inicia uma conversa com a Metropolis Analytics.</p>
           <p className="microcopy">Última atualização: 12 de julho de 2026.</p>
         </section>
 
-        <div className="section section--compact privacy-layout">
+        <div className="wrap section section--compact privacy-layout">
           <ReadingNav items={privacyNav} />
           <section className="privacy-content" aria-label="Informações sobre privacidade">
           <article id="visita" data-reveal>
@@ -67,9 +67,13 @@ export default function PrivacyPage() {
       </main>
 
       <footer className="site-footer">
-        <Link className="brand" href="/" aria-label="Metropolis Analytics — início"><Image src="/logo-metropolis.png" alt="" width={38} height={38} unoptimized /><span>Metropolis <strong>Analytics</strong></span></Link>
-        <p>Apoio metodológico e estatístico para pesquisas em saúde.</p>
-        <Link className="footer-link" href="/">Página inicial</Link>
+        <div className="wrap footer-inner">
+          <Link className="brand" href="/" aria-label="Metropolis Analytics — início"><Image src="/logo-metropolis.png" alt="" width={36} height={36} unoptimized /><span>Metropolis <strong>Analytics</strong></span></Link>
+          <p>Assessoria metodológica e estatística para pesquisa.</p>
+          <nav className="footer-links" aria-label="Navegação do rodapé">
+            <Link href="/">Página inicial</Link>
+          </nav>
+        </div>
       </footer>
     </>
   );

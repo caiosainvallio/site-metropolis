@@ -41,29 +41,61 @@ function count(html, pattern) {
   return [...html.matchAll(pattern)].length;
 }
 
-test("renderiza a homepage concisa na ordem planejada", async () => {
+test("renderiza a landing única na ordem planejada", async () => {
   const html = await renderedHtml();
 
-  assert.match(html, /<title>Parceria metodológica e estatística para pesquisas em saúde \| Metropolis Analytics<\/title>/i);
-  assert.match(html, /Sua pesquisa precisa de método, análise e direção/i);
+  assert.match(html, /<title>Assessoria metodológica e estatística \| Metropolis Analytics<\/title>/i);
+  assert.match(html, /Sua pesquisa merece um método que se sustenta/i);
+  assert.match(html, /Três situações, o mesmo problema de fundo/i);
+  assert.match(html, /Assessoria que percorre o estudo inteiro/i);
+  assert.match(html, /Reuniões até a explicação ser sua/i);
   assert.match(html, /Não oferecemos análise qualitativa/i);
-  assert.match(html, /Acompanhamento consultivo/i);
-  assert.match(html, /Relatório reprodutível/i);
-  assert.match(html, /Tabelas e figuras prontas para publicação/i);
-  assert.doesNotMatch(html, /class="scope-note"/i);
-  assert.doesNotMatch(html, /class="deliverable-line"/i);
 
   assertInOrder(html, [
     'id="inicio"',
+    'id="para-quem"',
+    'id="o-que-trava"',
     'id="como-ajudamos"',
+    'id="cobertura"',
+    'id="reunioes"',
     'id="como-funciona"',
-    'id="quem-somos"',
+    'id="modalidades"',
+    'id="quem-conduz"',
     'id="faq"',
     'id="contato"',
   ]);
 
+  // Guarda contra uma cópia velha da home anterior.
+  assert.doesNotMatch(html, /id="quem-somos"/i);
   assert.doesNotMatch(html, /id="mapa-metodologico"/i);
-  assert.doesNotMatch(html, /id="desenhos"/i);
+});
+
+test("publica a cobertura metodológica verificada", async () => {
+  const html = await renderedHtml();
+
+  // Os 8 desenhos de docs/matriz-cobertura-metodologica.md
+  for (const design of [
+    "Estudos transversais",
+    "Coortes",
+    "Estudos caso-controle",
+    "Ensaios clínicos",
+    "Estudos diagnósticos",
+    "Validação de instrumentos",
+    "Revisões sistemáticas e meta-análises",
+    "Avaliações econômicas em saúde",
+  ]) {
+    assert.ok(html.includes(design), `Desenho ausente na cobertura: ${design}`);
+  }
+
+  // As 6 etapas da jornada
+  assertInOrder(html, [
+    "Desenhos atendidos",
+    "Etapas do estudo",
+    "Planejamento",
+    "Banco de dados",
+    "Interpretação",
+    "Comunicação",
+  ]);
 });
 
 test("não publica padrões bloqueados pela política de conteúdo", async () => {
@@ -87,16 +119,19 @@ test("mantém landmarks, h1 único, skip link e nomes acessíveis na homepage", 
   assert.equal(count(html, /<main\b/gi), 1);
   assert.equal(count(html, /<footer\b/gi), 1);
   assert.equal(count(html, /<h1\b/gi), 1);
+  assert.ok(count(html, /<h2\b/gi) >= 10, "Alguma seção perdeu o próprio h2");
   assert.match(html, /<a[^>]+class="skip-link"[^>]+href="#conteudo"[^>]*>Pular para o conteúdo principal<\/a>/i);
   assert.match(html, /<main[^>]+id="conteudo"/i);
-  assert.match(html, /<nav[^>]+aria-label="Navegação principal"/i);
-  assert.match(html, /<nav[^>]+aria-label="Navegação principal para dispositivos móveis"/i);
-  assert.match(html, /<summary>Menu\s*<span[^>]+aria-hidden="true"/i);
   assert.match(html, /aria-label="Metropolis Analytics — início"/i);
   assert.doesNotMatch(html, /<img(?![^>]*\balt=)[^>]*>/i);
-  assert.equal(count(html, /role="tab"/gi), 3);
-  assert.match(html, /role="tablist"[^>]+aria-label="Linha de raciocínio da pesquisa"/i);
-  assert.equal(count(html, /aria-controls="faq-answer-/gi), 4);
+
+  // Navegação: desktop + móvel, ambas rotuladas
+  assert.equal(count(html, /aria-label="Navegação principal"/gi), 2);
+  assert.match(html, /<button[^>]+class="nav-toggle"[^>]*aria-expanded="false"[^>]*aria-controls="menu-mobile"/i);
+  assert.match(html, /<nav[^>]+id="menu-mobile"/i);
+
+  // FAQ: 7 itens, o primeiro aberto no primeiro paint
+  assert.equal(count(html, /aria-controls="faq-answer-/gi), 7);
   assert.match(html, /aria-expanded="true"/i);
 });
 
@@ -104,12 +139,20 @@ test("expõe apenas Caio como contato principal com mensagem de triagem", async 
   const html = await renderedHtml();
 
   assert.match(html, /href="https:\/\/wa\.me\/5511980158332\?text=/i);
-  assert.match(html, /Etapa(?:%20|\+)atual(?:%20|\+)da(?:%20|\+)pesquisa/i);
+  assert.match(html, /Tipo(?:%20|\+)de(?:%20|\+)projeto/i);
+  assert.match(html, /Etapa(?:%20|\+)atual/i);
   assert.match(html, /Principal(?:%20|\+)d%C3%BAvida(?:%20|\+)ou(?:%20|\+)necessidade/i);
   assert.match(html, /Prazo(?:%20|\+)relevante/i);
   assert.match(html, /com Caio Sain Vallio no WhatsApp \(abre em nova aba\)/i);
   assert.doesNotMatch(html, /wa\.me\/5511957163477/i);
-  assert.ok(count(html, /href="https:\/\/wa\.me\/5511980158332\?text=/gi) >= 3);
+
+  // nav desktop, nav móvel, hero e CTA final
+  assert.equal(count(html, /href="https:\/\/wa\.me\/5511980158332\?text=/gi), 4);
+
+  for (const match of html.matchAll(/<a[^>]+href="https:\/\/wa\.me\/[^"]+"[^>]*>/gi)) {
+    assert.match(match[0], /target="_blank"/i);
+    assert.match(match[0], /rel="noopener noreferrer"/i);
+  }
 });
 
 test("expõe os quatro destinos profissionais e rotula as buscas públicas", async () => {
@@ -144,20 +187,32 @@ test("renderiza /privacidade e mantém navegação interna para a política", as
   assert.match(privacy, /class="skip-link"[^>]+href="#conteudo"/i);
   assert.match(privacy, /aria-label="Nesta página"/i);
   assertInOrder(privacy, ['id="visita"', 'id="terceiros"', 'id="dados-tecnicos"', 'id="projetos"', 'id="solicitacoes"']);
+
+  // Guarda da migração para .wrap: sem isso a rota renderiza sem contêiner
+  // e nenhum outro teste perceberia.
+  assert.match(privacy, /class="wrap/i);
 });
 
 test("declara salvaguardas CSS para responsividade e acessibilidade", async () => {
   const css = await readFile(new URL("app/globals.css", root), "utf8");
 
-  assert.match(css, /--font-size-body:\s*1rem/);
+  assert.match(css, /--font-size-body:\s*1\.0625rem/);
   assert.match(css, /--measure-prose:\s*70ch/);
+  assert.match(css, /--section-compact:/);
   assert.match(css, /grid-template-columns:\s*minmax\(0,/);
   assert.match(css, /flex-wrap:\s*wrap/);
-  assert.match(css, /@media\s*\(max-width:\s*68rem\)/);
-  assert.match(css, /@media\s*\(max-width:\s*48rem\)/);
+  assert.match(css, /@media\s*\(min-width:\s*68rem\)/);
+  assert.match(css, /@media\s*\(min-width:\s*48rem\)/);
   assert.match(css, /min-height:\s*2\.75rem/);
-  assert.match(css, /:where\(a, summary\):focus-visible[\s\S]*outline:\s*3px solid/);
+  assert.match(css, /:where\(a, button, summary, input, textarea, select\):focus-visible[\s\S]*outline:\s*3px solid/);
   assert.match(css, /@media\s*\(prefers-reduced-motion:\s*reduce\)/);
-  assert.match(css, /animation:\s*none/);
+  assert.match(css, /animation-duration:\s*0\.01ms\s*!important/);
   assert.doesNotMatch(css, /letter-spacing:\s*-(?:0\.0[5-9]|0\.[1-9])em/);
+
+  // Estilos de /privacidade preservados na reescrita
+  assert.match(css, /\.privacy-layout/);
+  assert.match(css, /\.reading-nav/);
+
+  // CSS morto da home anterior removido de fato
+  assert.doesNotMatch(css, /\.journey|\.flow-point|\.service-list|\.bio-list/);
 });

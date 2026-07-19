@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Source_Sans_3 } from "next/font/google";
+import { SITE_URL } from "./site-metadata";
 import "./globals.css";
 
 const sourceSans = Source_Sans_3({
@@ -10,12 +11,19 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Metropolis Analytics",
     template: "%s | Metropolis Analytics",
   },
-  description: "Parceria metodológica e estatística para pesquisas em saúde, do planejamento à comunicação dos resultados.",
-  icons: { icon: "/logo-metropolis.png", shortcut: "/logo-metropolis.png" },
+  description: "Assessoria metodológica e estatística para pesquisa, do planejamento à interpretação dos resultados.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/logo-metropolis.png" },
+    ],
+    shortcut: "/logo-metropolis.png",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
