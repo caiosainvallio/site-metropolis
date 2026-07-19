@@ -45,7 +45,9 @@ Enquanto essas três não tiverem resposta, construir portal em cima é assumir 
 
 `chatgpt-auth.ts` autentica via headers `oai-authenticated-user-*` — ou seja, exige que o usuário tenha conta ChatGPT e passe pelo login da plataforma. O cliente-alvo é um doutorando, um hospital, uma empresa. Exigir conta ChatGPT para acessar o próprio relatório é uma barreira comercial que não se justifica.
 
-**Recomendação:** remover esse arquivo quando a decisão de auth for tomada, para não virar caminho de código morto que alguém liga por engano.
+**Esse arquivo permanece**: ele é o ponto de integração com a plataforma ChatGPT, usada pela equipe. Hoje nenhuma rota do site o importa — ele está disponível, não ligado. Se a integração for ativada, precisará de fiação explícita.
+
+**A consequência para o plano é outra:** ele não resolve o login dos clientes do portal. A Etapa 3 continua precisando de um mecanismo de autenticação próprio, e os dois podem coexistir — plataforma para uso interno, autenticação própria para clientes.
 
 ### 1.4 O ponto que muda a natureza do projeto
 
@@ -98,8 +100,7 @@ Sem mudança de arquitetura. Torna o que já existe defensável.
 - CI no GitHub Actions rodando `npm run lint` e `npm test` em cada push. Hoje a suíte de conteúdo só protege quem lembra de rodá-la.
 - `SECURITY.md` e política de dependências (Dependabot ou Renovate). Next.js teve 13 CVEs corrigidas em maio de 2026, três delas permitindo bypass de autenticação — atualizar deixará de ser opcional quando houver login.
 - Cabeçalhos de segurança no worker: CSP, `Strict-Transport-Security`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`. Baratos agora, retrabalho depois.
-- Remover `app/chatgpt-auth.ts` (código morto que toca autenticação).
-- Registrar variáveis de ambiente esperadas em `.env.example`, com `.env*` já ignorado.
+- Registrar variáveis de ambiente esperadas em `.env.example` quando existirem — hoje o projeto não tem nenhuma.
 
 **A favor:** baixo custo, sem risco, melhora o site atual independentemente do portal acontecer.
 **Contra:** não entrega nada visível ao cliente; é fácil despriorizar.
