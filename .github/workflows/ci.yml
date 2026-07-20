@@ -29,10 +29,11 @@ jobs:
       - name: Instalar dependências
         run: npm ci
 
+      # Scripts de raiz delegam a cada workspace (--workspaces --if-present).
       - name: Lint
         run: npm run lint
 
-      # `npm test` roda `npm run build` antes: a suíte importa o worker
-      # compilado em dist/ e verifica o HTML realmente renderizado.
+      # `npm test` builda e testa cada workspace. Em apps/site, a suíte importa
+      # o worker compilado em dist/ e verifica o HTML realmente renderizado.
       - name: Testes
         run: npm test

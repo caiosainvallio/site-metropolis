@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -11,12 +11,16 @@
 !.yarn/versions
 
 # testing
-/coverage
+coverage/
 
-# next.js
-/.next/
-/.vinext/
-/out/
+# next.js / vinext (gerados por app: apps/site, apps/portal)
+.next/
+.vinext/
+out/
+dist/
+
+# ferramentas locais do cloudflare/wrangler
+.wrangler/
 
 # misc
 .DS_Store
@@ -36,7 +40,7 @@ yarn-error.log*
 
 # typescript
 next-env.d.ts
-/dist/
-/.wrangler/
-/outputs/
-/work/
+
+# saídas de trabalho
+outputs/
+work/

@@ -220,10 +220,12 @@ test("envia HSTS apenas sob https", async () => {
 
 test("declara salvaguardas CSS para responsividade e acessibilidade", async () => {
   const css = await readFile(new URL("app/globals.css", root), "utf8");
+  // Tokens de marca agora vivem em @metropolis/ui, compartilhados com o portal.
+  const tokens = await readFile(new URL("../../packages/ui/tokens.css", root), "utf8");
 
-  assert.match(css, /--font-size-body:\s*1\.0625rem/);
-  assert.match(css, /--measure-prose:\s*70ch/);
-  assert.match(css, /--section-compact:/);
+  assert.match(tokens, /--font-size-body:\s*1\.0625rem/);
+  assert.match(tokens, /--measure-prose:\s*70ch/);
+  assert.match(tokens, /--section-compact:/);
   assert.match(css, /grid-template-columns:\s*minmax\(0,/);
   assert.match(css, /flex-wrap:\s*wrap/);
   assert.match(css, /@media\s*\(min-width:\s*68rem\)/);

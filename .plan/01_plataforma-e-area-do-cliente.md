@@ -9,7 +9,11 @@ Escrito em 18 de julho de 2026.
 - **Etapa 1 — decidida** em 19 de julho de 2026. Ver [ADR-001](../docs/adr-001-plataforma-do-portal.md):
   portal transporta apenas entregáveis (sem upload de banco pelo cliente); site e portal em
   aplicações separadas; Cloudflare em conta própria + Supabase, mantendo o vinext.
-- **Etapas 2–8 — pendentes.** As seções abaixo que discutem alternativas de plataforma ficam
+- **Etapa 2 — concluída** em 19 de julho de 2026. Monorepo com npm workspaces: a landing foi
+  para `apps/site` (intacta, suíte de testes verde), o portal nasceu como placeholder `noindex`
+  em `apps/portal`, e os tokens de marca foram extraídos para `packages/ui` (consumidos pelos
+  dois apps). Bases de ESLint e tsconfig em `packages/config`. Sem autenticação ou banco ainda.
+- **Etapas 3–8 — pendentes.** As seções abaixo que discutem alternativas de plataforma ficam
   como registro do raciocínio; onde houver divergência, o ADR-001 prevalece.
 
 Seguem em aberto e bloqueiam a Etapa 5: domínio próprio e a definição de controladora ou operadora.
