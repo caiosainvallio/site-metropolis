@@ -1,0 +1,10 @@
+{
+  "name": "@metropolis/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./tokens.css": "./tokens.css",
+    "./assets/logo-metropolis.png": "./assets/logo-metropolis.png"
+  }
+}

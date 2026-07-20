@@ -2,17 +2,19 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
 
-const eslintConfig = defineConfig([
+// Base de lint compartilhada pelos apps do monorepo. Cada app reexporta este
+// config; ignores específicos de app podem ser acrescentados no arquivo local.
+const base = defineConfig([
   ...nextVitals,
   ...nextTs,
-  // Override default ignores of eslint-config-next.
   globalIgnores([
-    // Default ignores of eslint-config-next:
     ".next/**",
     "out/**",
     "build/**",
+    "dist/**",
+    ".vinext/**",
     "next-env.d.ts",
   ]),
 ]);
 
-export default eslintConfig;
+export default base;
